@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>CHAPTER 01 변수-데이터 종류</title>
+    <style>
+		body{font-size:13px}
+		h1,h2,h3,h4,h5,div,p,dt,dd,table,td,th{padding:0;margin:0}
+		h1{font-size:17px}
+		h2{margin:15px 0 10px;font-size:15px}
+		dt{margin-top:10px;font-weight:bold}
+		table{width:100%;margin-top:10px;border-collapse: collapse;table-layout:fixed;font-size:13px}
+		th,td{border:1px solid #ccc;padding:10px}
+	</style>
+    <script>
+        // 변수 num을 선언하고 변수값 10을 할당 하시오.
+		var num = 10;
+		console.log(typeof(num));
+
+        // 변수 naver을 선언하고 변수값 true을 할당 하시오.
+		var naver = true;
+		console.log(typeof(naver));
+
+        // 변수 str을 선언하고 변수값 "naver"를 할당하시오.
+		var str = "naver";
+		console.log(typeof(str));
+
+        // 에러는 아니지만 피해야 될 상황. 변수의 타입을 바꾸지 않는다
+        var num2 = 10;
+        num2 = "naver";
+
+        // age1 = 30 과 age2 = "30"은 같은가? ( === 로 비교한다 )
+		var age1=30;
+		var age2="30";
+		console.log(typeof(age1));
+		console.log(typeof(age2));
+		console.log(age1===age2);
+
+        // boo1 = false 와 boo2 = "false" 는 같은가? ( === 로 비교한다 )
+		var boo1=false;
+		var boo2="false";
+		console.log(typeof(boo1));
+		console.log(typeof(boo2));
+		console.log(boo1===boo2);
+
+        // var data1; 선언 후에 data1값을 조사한다.
+		var data1;
+		console.log(data1);
+		
+		// 함수 인자 앖 없이 함수를 호출하는 경우
+		function myFunc(data1){
+			console.log(data1);
+		}
+		myFunc("value1");
+		myFunc();
+		
+		// 존재하지 않는 객체의 프로퍼티에 접근하는 경우
+		function MyGroup(){
+			this.name="naver";	
+		}
+		var test1= new MyGroup();
+		console.log(test1.name);
+		console.log(test1.userName);
+
+        /*  undefined
+            변수를 만드는 과정은 선언과 대입(할당) 이다.
+            선언만하고 변수값을 대입하지 않는다면 undfined 이다.
+            변수 타입의 결정되는 시점은 변수값을 대입(할당) 하는 시점이다.
+         */
+		 
+	
+		console.log(typeof(null));
+        /* null
+            null과 undefined는 둘 다 비슷하게 변수에 변수값이 없는 것을 말한다.
+            undefined는 변수값이 대입되기 전까지의 값으로 개발자가 대입하지 않고 자동으로 값을 가진다. (알 수 없는 값)
+            이에 반해 null은 개발자가 의도적으로 값이 없음을 알리는 용도로 쓰인다. (아무런 값이 없음을 알림)
+        */
+		
+		// 데이터를 초기화 해보자
+		var value1 = 0;
+		var value2 = "";
+		var value3 = false;
+		var value4 = null;
+		console.log(value1);
+		console.log(value2);
+		console.log(value3);
+		console.log(value4);
+		
+    </script>
+</head>
+<body>
+	<div>
+    	<h1> CHAPTER 01 변수 - 데이터 종류
+        <table>
+        <col width="200">
+        <col width="250">
+        <col>
+        <thead>
+        	<tr>
+            	<th>데이터형</th>
+                <th>범위</th>
+                <th>예</th>
+            </tr>
+        </thead>
+        <tbody>
+        	<tr>
+            	<td>숫자형(Number)</td>
+                <td>-</td>
+                <td>var age = 30;<br>var weight=60.25;</td>
+        	</tr>
+            <tr>
+            	<td>문자형(String)</td>
+                <td>문자열</td>
+                <td>var name = "naver";</td>                
+            </tr>
+            <tr>
+            	<td>논리형</td>
+                <td>true,false</td>
+                <td>var isLogin=false;</td>
+            </tr>
+            <tr>
+            	<td>특수형(undefined)</td>
+                <td>변수는 선언했지만 값이 아직 할당되지 않은 상태</td>
+                <td>var naver;</td>
+            </tr>
+            <tr>
+            	<td>특수값(null)</td>
+                <td>값이 아직 없다는 의미 일반적으로 undefined와 같은 의미로 사용</td>
+                <td>var band=null;</td>
+            </tr>
+            <tr>
+            	<td>함수(function)</td>
+                <td>-</td>
+                <td>function showMenu(){}<br>var func=showMenu;</td>
+            </tr>
+            <tr>
+            	<td>클래스(function)</td>
+                <td>-</td>
+                <td>function MyClass(){}<br>var myClass=MyClass;</td>
+            </tr>
+            <tr>
+            	<td>객체(Object)</td>
+                <td>-</td>
+                <td>function MyClass(){}<br>var myClass=new MyClass</td>
+            </tr>      
+        </tbody>
+        </table>
+        
+        <h2>1. 숫자형</h2>
+        <h3>실무에서 다음과 같이 사용해요</h3>
+        <ul>
+        	<li>나이, 몸무게와 같은 숫자 정보를 저장할때 사용</li>
+            <li>현재 기록중인 게임 점수를 저장할때 사용</li>
+            <li>현재 남아 있는 에너지를 저장할때 사용</li>
+            <li>메뉴에서 현재 선택된 메뉴 인덱스 값을 저장할때 사용</li>
+        </ul>
+        
+        <h2>2. 문자형</h2>
+        <h3>실무에서 다음과 같이 사용해요</h3>
+        <ul>
+        	<li>메뉴 항목과 같은 글자 정보를 저장할때 사용</li>
+            <li>아이디, 패스워드를 저장할때 사용</li>
+            <li>게시물 제목, 날짜, 글쓴이 등 담을때 사용</li>
+            <li>이름, 닉네임, 주소 담을때 사용</li>
+        </ul>
+        
+        <h2>3. 논리형</h2>
+        <h3>실무에서 다음과 같이 사용해요</h3>
+        <ul>
+            <li>로그인 상태 여부 저장할때 사용</li>
+            <li>체크박스 선택 여부 저장할때 사용</li>
+        </ul>
+        
+        <h2>4. undefined</h2>
+        <p>값이 없는 경우 변수가 선언되었으나 대입이나 할당된 값이 없는 경우</p>
+        
+        <h2>5. null</h2>
+        <p>아무것도 참조하고 있지 않다는 의미. 주로 객체를 담을 변수를 초기화할 때 많이 사용</p>
+    </div>
+</body>
+</html>
