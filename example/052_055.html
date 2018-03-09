@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>CHAPTER 01 변수 종류</title>
+    <style>
+      body{font-size:13px}
+      h1,h2,h3,h4,h5,div,p,dt,dd,table,td,th{padding:0;margin:0}
+      h1{font-size:17px}
+      h2{margin:15px 0 10px;font-size:15px}
+      dt{margin-top:10px;font-weight:bold}
+      table{width:100%;margin-top:10px;border-collapse: collapse;table-layout:fixed;font-size:13px}
+      th,td{border:1px solid #ccc;padding:10px}
+    </style>
+
+    <script>
+
+      //함수(function)가 아닌 곳에서 선언된 변수는 전역변수이다.
+      //var 여부 상관없이 전역변수이다.
+      var global_str="global"; //전역변수
+      global_boo=true; //전역변수
+
+      //함수(function) 안에서 var를 이용하여 변수를 선언하면 지역변수이다.
+      //함수(function) 안에서 var없이 변수를 선언하면 전역변수이다.
+      function func()
+      {
+        var local_str="local"; //지역변수
+        local_boo=true; //전역변수
+      }
+
+      //변수의 생명주기
+      function test()
+      {
+        var local_var=10;
+        global_var=20;
+
+        console.log("함수안 전역:" + global_var);
+        console.log("함수안 지역:" + local_var);
+      }
+
+      test();
+      console.log("함수밖 전역:" + global_var);
+      //console.log("함수밖 지역:" + local_var); //함수 밖에서는 지역변수 접근이 안된다.
+
+      //변수 이름이 같더라도 다른 영역에 존재하면 완전히 다른변수이다.
+      //함수 안에서는 지역변수가 우선이다.
+      var same_data = "전역변수 same_data";
+      var global_data = "전역변수 global_data";
+
+      function test2()
+      {
+       var same_data = "지역변수 same_data";
+
+       console.log(same_data);
+       console.log(global_data);
+      }
+
+      test2();
+
+    </script>
+
+</head>
+<body>
+
+</body>
+</html>

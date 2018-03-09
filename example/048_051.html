@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>CHAPTER 01 기초 문법-배열맛보기</title>
+    <style>
+  		body{font-size:13px}
+  		h1,h2,h3,h4,h5,div,p,dt,dd,table,td,th{padding:0;margin:0}
+  		h1{font-size:17px}
+  		h2{margin:15px 0 10px;font-size:15px}
+  		dt{margin-top:10px;font-weight:bold}
+  		table{width:100%;margin-top:10px;border-collapse: collapse;table-layout:fixed;font-size:13px}
+  		th,td{border:1px solid #ccc;padding:10px}
+  	</style>
+
+    <script>
+      // 배열의 생성
+      var arr1=[1,2,3];
+      console.log(arr1);
+
+  		// 변수 arr2이 배열객체를 참조한다
+  		var arr2=new Array(10,20,30);
+      console.log(arr2);
+
+      // 배열원소 접근
+  		console.log(arr1[0]);
+  		console.log(arr2[1]);
+
+      //arr1의 주소를 복사하여 temp에 넣어준다(참조)
+  		var temp = arr1;
+      console.log(temp);
+
+  		//주의 - arr1의 0번째 값이 변경된다(참조와 복사의 개념 중요)
+      temp[0]=100;
+  		console.log(arr1);
+
+      /* TEST
+      * 철수님 안녕하세요?
+      * 영희님 안녕하세요?
+      * 아영님 안녕하세요?
+      * 정희님 안녕하세요?
+      * 선희님 안녕하세요?
+      */
+
+      //TEST결과가 나오도록 코딩한다
+      //아래 상황별로 배열 앞, 뒤로 이름을 추가해 본다
+      var str="님 안녕하세요?";
+      var userName=["영미", "철수", "영희", "아영", "정희", "선희", "은정"]
+
+      document.write(userName[0] + str + "<br>");
+      document.write(userName[1] + str + "<br>");
+      document.write(userName[2] + str + "<br>");
+      document.write(userName[3] + str + "<br>");
+      document.write(userName[4] + str + "<br>");
+      document.write(userName[5] + str + "<br>");
+      document.write(userName[6] + str + "<br>");
+      document.write("------------------" + "<br>");
+
+      // 배열이 아니라 변수로 관리해야 한다면 개발자는 기억할 것이 많다.
+      var a = "철수", b ="영희", c = "아영", d ="정희",  e="선희";
+
+      document.write(a + str + "<br>");
+      document.write(b + str + "<br>");
+      document.write(c + str + "<br>");
+      document.write(d + str + "<br>");
+      document.write(e + str + "<br>");
+      document.write("------------------" + "<br>");
+
+      // 인덱스가 있는 변수라 하더라도 관리가 쉽지 않다
+      var a1 = "철수", a2 ="영희", a3 = "아영", a4 ="정희",  a5="선희";
+
+      document.write(a1 + str + "<br>");
+      document.write(a2 + str + "<br>");
+      document.write(a3 + str + "<br>");
+      document.write(a4 + str + "<br>");
+      document.write(a5 + str + "<br>");
+      document.write("------------------" + "<br>");
+
+      //배열에 반복문을 사용해보자
+      for(var i=0; i < userName.length; i++)
+      document.write(userName[i] + str + "<br>");
+
+      /*
+        배열을 사용하는 가장 큰 이유는 바로 배열의 가장 친한 친구인 반복문과
+        함께 사용하면 더욱 뛰어난 능력을 갖게 되기 때문이다.
+      */
+
+    </script>
+
+</head>
+<body>
+
+</body>
+</html>
