@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>CHAPTER 01 변수 미션</title>
+  <style>
+    body{font-size:13px}
+    h1,h2,h3,h4,h5,div,p,dt,dd,table,td,th{padding:0;margin:0}
+    h1{font-size:17px}
+    h2{margin:15px 0 10px;font-size:15px}
+    dt{margin-top:10px;font-weight:bold}
+    table{width:100%;margin-top:10px;border-collapse: collapse;table-layout:fixed;font-size:13px}
+    th,td{border:1px solid #ccc;padding:10px}
+  </style>
+
+    <script>
+
+    /*****************************************
+        var num = 10;
+
+        1. 변수명은 무엇인가? num
+        2. 변수값은 무엇인가? 10
+        3. 무엇으로 변수의 선언을 하는가? var
+        4. 변수값은 어떻게 대입(할당)하는가? =
+        5. 코드의 종료를 알리기 위해 무엇을 사용하나? ;
+     *****************************************/
+
+    /*****************************************
+        1. 변수에 대입되는 원시데이터의 종류대로 변수를 만드시오. (number, boolean, string);
+        2. typeof 를 이용하여 각 변수의 데이터타입을 console에 나타내시오.
+        3. 변수를 선언만하고 데이터타입을 조사한다.
+     ******************************************/
+     var data1 = 10;
+     var data2 = true;
+     var data3 = "str";
+
+     console.log(typeof(data1));
+     console.log(typeof(data2));
+     console.log(typeof(data3));
+
+		 //가비지 컬렉션 - 쓰지 않는 객체의 참조를 끊어주어(null) 메모리 정리
+      console.log(typeof null);
+      console.log(typeof undefined);
+
+      /*****************************************
+       console창에 아래기 print 되도록 코딩하싱
+       {name}님~  band에 오신것을 {msg}.합니다
+
+       {변수명}은 동적으로 데이터가 바뀌는 부분입니다.
+       문자열의 결합은 ' + ' 연산자를 이용합니다.
+       *****************************************/
+
+         var name = "youngju";
+         var msg = "환영"
+         var result = name + "님 band에 오신것을" + msg + "합니다.";
+         document.write(result);
+
+         //print 되는 결과값을 적으시오.
+         var foo1 = "foo1 전역변수입니다";
+         var foo2 = "foo2 전역변수입니다";
+
+         function func()
+         {
+           var foo1 = "foo1 지역변수입니다";
+           var foo3 = "foo3 지역변수입니다";
+           console.log(foo1); //foo1 지역변수입니다
+           console.log(foo2); //foo2 전역변수입니다
+           console.log(foo3); //foo3 지역변수입니다
+         }
+
+         func();
+         console.log(foo1); //foo1 전역변수입니다
+         console.log(foo2); //foo2 전역변수입니다
+         console.log(foo3); //Uncaught ReferenceError
+
+    </script>
+
+</head>
+<body>
+
+</body>
+</html>
