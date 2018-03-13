@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>부록:함수</title>
+    <style>
+      body{font-size:13px}
+      h1,h2,h3,h4,h5,div,p,dt,dd,table,td,th{padding:0;margin:0}
+      h1{font-size:17px}
+      h2{margin:15px 0 10px;font-size:15px}
+      dt{margin-top:10px;font-weight:bold}
+      table{width:100%;margin-top:10px;border-collapse: collapse;table-layout:fixed;font-size:13px}
+      th,td{border:1px solid #ccc;padding:10px}
+    </style>
+    <script>
+
+      // 함수 만들기
+      function foo1(){
+        console.log("foo1 함수실행");
+      }
+
+      var foo2 = function(){
+        console.log("foo2 함수실행");
+      }
+
+      // 함수호출하기
+      // 익명함수에서는 꼭 뒤에서 호출해야함
+      foo1();
+      foo2();
+
+      // 매개변수
+      function foo3(num){
+        var result = num * 10;
+        console.log(result);
+      }
+
+      foo3(10);
+
+      //return
+      function foo4(num){
+        var result = num * 10;
+        return result;
+      }
+
+      console.log(foo4(20));
+      var result = foo4(100);
+      console.log(result);
+
+      /**************************************
+      // 매개변수X, 리턴X
+
+      // 매개변수0, 리턴X
+
+      // 매개변수X, 리턴0
+
+      //매개변수0, 리턴0
+      ***************************************/
+
+
+      //A와 B가 같이 프로그래밍을 한다.
+      //A는 구구단을 print하는 프로그래밍을 한다.
+      //B는 짝수, 홀수를 구분하는 프로그램을 한다.
+
+      //A가 프로그래밍 한 구구단
+      var num1 = 2;
+      var num2 = 1;
+      var result = "";
+
+      result += num1 + "*" + num2 + "=" + num1 * (num2++) + "<br>";
+      result += num1 + "*" + num2 + "=" + num1 * (num2++) + "<br>";
+      result += num1 + "*" + num2 + "=" + num1 * (num2++) + "<br>";
+      result += num1 + "*" + num2 + "=" + num1 * (num2++) + "<br>";
+      result += num1 + "*" + num2 + "=" + num1 * (num2++) + "<br>";
+      result += num1 + "*" + num2 + "=" + num1 * (num2++) + "<br>";
+      result += num1 + "*" + num2 + "=" + num1 * (num2++) + "<br>";
+      result += num1 + "*" + num2 + "=" + num1 * (num2++) + "<br>";
+      result += num1 + "*" + num2 + "=" + num1 * (num2++) + "<br>";
+      document.write(result);
+
+      // 시간이 흘러 이번엔 2단 다음인 3단을 추가 해달라는 요청을 받게 된다.
+      num1++;
+      num2=1;
+      result = "";
+
+      result += num1 + " * " +  num2 + " = " + num1 * (num2++) + "<br>";
+      result += num1 + " * " +  num2 + " = " + num1 * (num2++) + "<br>";
+      result += num1 + " * " +  num2 + " = " + num1 * (num2++) + "<br>";
+      result += num1 + " * " +  num2 + " = " + num1 * (num2++) + "<br>";
+      result += num1 + " * " +  num2 + " = " + num1 * (num2++) + "<br>";
+      result += num1 + " * " +  num2 + " = " + num1 * (num2++) + "<br>";
+      result += num1 + " * " +  num2 + " = " + num1 * (num2++) + "<br>";
+      result += num1 + " * " +  num2 + " = " + num1 * (num2++) + "<br>";
+      result += num1 + " * " +  num2 + " = " + num1 * (num2++) + "<br>";
+      document.write(result);
+
+      // 3단이 잘나오지만 중복되는 코드가 매우 많아 약간 불편한 맘이 든다.
+
+      // 이번에는 B가 작성한 코드(짝, 홀수 프로그램)을 추가한다.
+      var num1 = 1000;
+      var num2 = 2;
+      var result = ""
+
+      result += num1 + "을" + num2 + "로 나누면 나머지는" + num1 % num2 + "입니다." + "<br>"
+      document.write(result);
+
+      // 시간이 흘러 B는 퇴사를 하였고 A는 3단을 다시 print하라는 요청을 받았다.
+      // 중복코드가 신경쓰이므로 변화가 없는 num1은 이전 값을 사용한다.
+      num2 = 1;
+      result = "";
+
+      result += num1 + " * " +  num2 + " = " + num1 * (num2++) + "<br>";
+      result += num1 + " * " +  num2 + " = " + num1 * (num2++) + "<br>";
+      result += num1 + " * " +  num2 + " = " + num1 * (num2++) + "<br>";
+      result += num1 + " * " +  num2 + " = " + num1 * (num2++) + "<br>";
+      result += num1 + " * " +  num2 + " = " + num1 * (num2++) + "<br>";
+      result += num1 + " * " +  num2 + " = " + num1 * (num2++) + "<br>";
+      result += num1 + " * " +  num2 + " = " + num1 * (num2++) + "<br>";
+      result += num1 + " * " +  num2 + " = " + num1 * (num2++) + "<br>";
+      result += num1 + " * " +  num2 + " = " + num1 * (num2++) + "<br>";
+      document.write(result);
+
+      // 생각지도 못한 결과가 나옵니다. 3단이 아닌 1000단이 나온다
+      // 급한 맘에 B가 짠 코드를 제거한 후 테스해보니 3단은 잘 나온다
+
+      /***************************************
+       * 위의 코드에는 두 가지 문제가 있다.
+       * 1. 중복된 코드가 많고 작은 요청에도 코드가 많이 늘어난다.
+       * 2. 데이터가 오염되기 쉽다. (데이터를 보호 할 수 없음)
+       * 함수는 위 문제를 해결해준다.
+       ****************************************/
+
+      // 구구단 프로그래밍을 함수로 만든다.
+      // 사용되는 데이터는 지역변수(num2, result), 매개변수(num1)에 담으므로 밖에서는 접근할 수 없다.
+      // 재활용도가 높아 구구단이 늘어도 코드가 추가되지 않는다.
+
+      function googooDan(num1){
+        var num2, result;
+
+        num2 = 1;
+        result = "";
+
+        result += num1 + "*" + num2 + "=" + num1 * (num2++) + "<br>";
+        result += num1 + "*" + num2 + "=" + num1 * (num2++) + "<br>";
+        result += num1 + "*" + num2 + "=" + num1 * (num2++) + "<br>";
+        result += num1 + "*" + num2 + "=" + num1 * (num2++) + "<br>";
+        result += num1 + "*" + num2 + "=" + num1 * (num2++) + "<br>";
+        result += num1 + "*" + num2 + "=" + num1 * (num2++) + "<br>";
+        result += num1 + "*" + num2 + "=" + num1 * (num2++) + "<br>";
+        result += num1 + "*" + num2 + "=" + num1 * (num2++) + "<br>";
+        result += num1 + "*" + num2 + "=" + num1 * (num2++) + "<br>";
+        document.write(result);
+      }
+
+      googooDan(2);
+      googooDan(3);
+
+      function evenOdd(num1){
+        var num2, result;
+
+        num2 = 2;
+        result = "";
+
+        result += num1 + "을" + num2 + "로 나누면 나머지는" + num1 % num2 + "입니다." + "<br>"
+        document.write(result);
+      }
+
+      evenOdd(99);
+      evenOdd(100);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
