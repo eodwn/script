@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>부록 제이쿼리</title>
+    <style>
+      body{font-size:13px}
+      h1,h2,h3,h4,h5,div,p,dt,dd,table,td,th{padding:0;margin:0}
+      h1{font-size:17px}
+      h2{margin:15px 0 10px;font-size:15px}
+      dt{margin-top:10px;font-weight:bold}
+      table{width:100%;margin-top:10px;border-collapse: collapse;table-layout:fixed;font-size:13px}
+      th,td{border:1px solid #ccc;padding:10px}
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script>
+
+    //********************   DOM 준비되면 감지하기   **********************
+      // ready() 이벤트 함수
+      // ex) DOM이 준비되면 alert을 띄운다
+      $(document).ready(function(){
+        alert("DOM 준비되면 alert 띄워보기");
+      });
+
+    //********************    Selector   **********************
+
+      $(document).ready(function(){
+        $("h2").css("color", "red");
+        $("#p1").css("color", "blue");
+        $(".p2").css("color", "green");
+        $("ol").css("color", "orange");
+        $("ol>li:even").css("color", "gray");
+        $("button").css({
+          "color":"pink",
+          "fontSize" : 16
+        });
+      });
+
+    // ex) body 태그의 바탕색을 #cccccc로 바꾼다
+      $(document).ready(function(){
+        $("body").css("backgroundColor", "#cccccc");
+      })
+
+    //********************    Event   **********************
+      // ex) 버튼을 클릭하면 첫번째 li의 폰트색을 바꾸시오
+      $(document).ready(function(){
+        $(".button1").click(function(){
+          $("ol>li:eq(0)").css("color", "orange");
+        });
+      });
+
+      // ex) 버튼에 롤오버 할 때 마다 li의 폰트색을 바꾸시오
+      $(document).ready(function(){
+        $(".button1").mouseover(function(){
+          var $fontcolor = Math.ceil(Math.random() * 0xffffff);
+          console.log($fontcolor);
+          $fontcolor = "#" + $fontcolor.toString(16);
+          console.log($fontcolor);
+          $("ol>li").css("color", $fontcolor);
+        });
+      });
+
+    //********************    ADD / Remove   **********************
+      $(document).ready(function(){
+        $(".button1").click(function(){
+          $("body").prepend("<div class='createdDiv'>body에 div를 생성합니다.</div>");
+
+          $(".createdDiv").click(function(){
+            console.log(this);
+            $(this).remove();
+          });
+        });
+      });
+
+      //********************    After / Before  **********************
+      $(document).ready(function(){
+        var $li = $("ol li");
+        $(".button1").click(function(){
+          var $after = $("<li>뒤에 붙는 리스트</li>");
+          var $before = $("<li>앞에 붙는 리스트</li>");
+
+          $li.after($after);
+          $li.before($before);
+        });
+      });
+
+      //********************    Show / Hide / Toggle  **********************
+      $(document).ready(function(){
+        var $ul = $("ul");
+        var $button = $(".button2");
+        $button.text("토글");
+
+        var $buttonShow = $("<button>show</button>");
+        var $buttonHide = $("<button>hide</button>");
+
+        $button.after($buttonHide);
+        $button.before($buttonShow);
+
+        $buttonShow.click(function(){
+          $ul.show("slow");
+        });
+
+        $buttonHide.click(function(){
+          $ul.hide("fast");
+        })
+
+        $button.click(function(){
+          $ul.toggle();
+        });
+      });
+
+    </script>
+</head>
+<body>
+    <h2>heading 태그입니다.</h2>
+    <p id="p1">paragraph 태그입니다.</p>
+    <p class="p2">또 다른 paragraph 태그입니다.</p>
+    <ol>
+        <li>첫번째</li>
+        <li>두번째</li>
+        <li>세번째</li>
+        <li>네번째</li>
+    </ol>
+
+    <ul>
+        <li>리스트 첫번째</li>
+        <li>리스트 두번째</li>
+        <li>리스트 세번째</li>
+        <li>리스트 네번째</li>
+    </ul>
+    <button  class="button1">버튼1</button>
+    <button class="button2">버튼2</button>
+</body>
+</html>

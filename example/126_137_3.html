@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>부록 제이쿼리</title>
+    <style>
+      body{font-size:13px}
+      h1,h2,h3,h4,h5,div,p,dt,dd,table,td,th{padding:0;margin:0}
+      h1{font-size:17px}
+      h2{margin:15px 0 10px;font-size:15px}
+      dt{margin-top:10px;font-weight:bold}
+      table{width:100%;margin-top:10px;border-collapse: collapse;table-layout:fixed;font-size:13px}
+      th,td{border:1px solid #ccc;padding:10px;}
+
+      div{
+          width: 100px;
+          height: 100px;
+          margin: 3px;
+          float: left;
+          background-color: black;
+          font-size:4em;
+          color: white;
+          text-align: center;
+          line-height: 100px;
+      }
+
+      .circle{
+          border-radius: 50%;
+      }
+
+      .red{
+          background-color: red;
+      }
+
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script>
+
+    //*************** attr **********************
+
+    $(document).ready(function(){
+      var num = 0;
+      var $total = $("div").length;
+      console.log($total);
+
+      $("div").click(function(){
+        $(this).off("click");
+
+        // 클릭할 때 마다 검정 > 빨강 순으로 바뀌게 하시오.
+        if(num % 2==0){
+          $(this).attr("class", "circle");
+        }
+        else{
+          $(this).attr("class", "circle red");
+        }
+
+        num++;
+
+        // div 전체가 원형으로 되면 검은색과 붉은색돌에 숫자를 넣으시오
+        if(num >= $total){
+          $("div[class='circle']").each(function(index){
+            $(this).text(index+1);
+          });
+
+          $("div[class='circle red']").each(function(index){
+            $(this).text(index+1);
+          });
+        }
+      });
+    });
+
+    </script>
+
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</body>
+</html>

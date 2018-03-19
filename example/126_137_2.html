@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>부록 제이쿼리</title>
+    <style>
+      body{font-size:13px}
+      h1,h2,h3,h4,h5,div,p,dt,dd,table,td,th{padding:0;margin:0}
+      h1{font-size:17px}
+      h2{margin:15px 0 10px;font-size:15px}
+      dt{margin-top:10px;font-weight:bold}
+      table{width:100%;margin-top:10px;border-collapse: collapse;table-layout:fixed;font-size:13px}
+      th,td{border:1px solid #ccc;padding:10px}
+
+      .box * {
+          display: block;
+          border: 2px solid #ccc;
+          color: #222;
+          padding: 5px;
+          margin: 15px;
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+
+      //********************    parent / parents  **********************
+      $(document).ready(function(){
+        var $span = $("span");
+        console.log($span.length);
+        $span.parent().css({
+          "border" : "2px solid red",
+          "color" : "red"
+        });
+
+        console.log($span.parents());
+        $span.parents("body > div").css("border", "2px solid red");
+      });
+
+      //********************    children / find  **********************
+      $(document).ready(function(){
+        var $div = $("body > div");
+        console.log($div.children());
+        $div.children().css({
+          "border" : "2px  pink",
+          "color" : "green"
+        });
+      });
+
+      $(document).ready(function(){
+        var $body = $("body");
+        $body.find("p").css({
+          "fontSize" : "16px",
+          "color" : "blue"
+        });
+      });
+
+      //********************    animate **********************
+      $(document).ready(function(){
+        var $div = $("div:last");
+        $div.css("position", "absolute");
+        $div.animate({"top":"500px"}).animate({"left":"200px"});
+      });
+      
+    </script>
+
+</head>
+<body>
+    <div class="box">
+        <div style="width:500px;">div (great-grandparent)
+            <ul>ul (grandparent)
+                <li>li (direct parent)
+                    <span>span</span>
+                </li>
+            </ul>
+        </div>
+
+        <div style="width:500px;">div (grandparent)
+            <p>p (direct parent)
+                <span>span</span>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
