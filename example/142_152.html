@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>조건문 if</title>
+    <style>
+      body{font-size:13px}
+      h1,h2,h3,h4,h5,div,p,dt,dd,table,td,th{padding:0;margin:0}
+      h1{font-size:17px}
+      h2{margin:15px 0 10px;font-size:15px}
+      dt{margin-top:10px;font-weight:bold}
+      table{width:100%;margin-top:10px;border-collapse: collapse;table-layout:fixed;font-size:13px}
+      th,td{border:1px solid #ccc;padding:10px}
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script>
+    //************* 조건문과 사용되는 연산자 *************
+
+    // 동등비교
+    console.log(3 == 3); //true
+    console.log(3 ===3); //true
+    console.log(3 == "3"); //true
+    console.log(3 === "3"); //false
+
+    console.log(3 != 3); //false
+    console.log(3 !== 3); //false
+    console.log(3 != "3"); //false
+    console.log(3 !== "3"); //true
+
+    // String과 Number 비교일 경우 Number로 통일
+    console.log(0 == ""); //true("" 0)
+    console.log(0 == " "); //true(" " 0)
+
+
+    // 비교 연산자1
+    var n1 = 10;
+    var n2 = 20;
+    console.log(n1 > n2); //false
+    console.log(n1 >= n2); //false
+    console.log(n1 < n2); //true
+    console.log(n1 <= n2); //true
+
+    // 비교 연산자2
+    var s1 = 10;
+    var s2 = 10;
+    console.log(s1 > s2); //false
+    console.log(s1 >= s2); //true
+    console.log(s1 < s2); //false
+    console.log(s1 <= s2); //true
+
+    // 논리연산자
+    var d1 = 100;
+    var d2 = 200;
+    console.log(d1 > 0 && d2 > 0); //true
+    console.log(d1 > 0 && d2 > 200); //false
+    console.log(d1 > 100 && d2 > 100); //false
+    console.log(d1 > 100 && d2 > 200); //false
+
+    console.log(d1 > 0 || d2 > 0); //true
+    console.log(d1 > 0 || d2 > 200); //true
+    console.log(d1 > 100 || d2 > 100); //true
+    console.log(d1 > 100 || d2 > 200); //false
+
+    // 반대
+    console.log(!true); //false
+    console.log(!(d1 > d2)); //true
+
+    // 기타
+    console.log("", Boolean("")); //if(""){} false
+    console.log(" ", Boolean(" ")) //if(" "){} true
+    console.log("0", Boolean("0")); //if("0"){} true
+    console.log(0, Boolean(0)); //if(0){} false
+    console.log(10, Boolean(10)); //if(10){} true
+    console.log("true", Boolean("true")) //if("true"){} true
+    console.log("false", Boolean("false")); //if("false"){} true
+    console.log("A", Boolean("A")); //if("A"){} true
+    console.log(null, Boolean(null)); //if(null){} false
+    console.log(undefined, Boolean(undefined)); //if(undefined){} false
+    console.log(NaN, Boolean(NaN)) //if(NaN){} false
+
+    </script>
+
+</head>
+<body>
+
+</body>
+</html>
