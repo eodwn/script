@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>조건문 if</title>
+    <style>
+      body{font-size:13px}
+      h1,h2,h3,h4,h5,div,p,dt,dd,table,td,th{padding:0;margin:0}
+      h1{font-size:17px}
+      h2{margin:15px 0 10px;font-size:15px}
+      dt{margin-top:10px;font-weight:bold}
+      table{width:100%;margin-top:10px;border-collapse: collapse;table-layout:fixed;font-size:13px}
+      th,td{border:1px solid #ccc;padding:10px}
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script>
+
+    var a = 10;
+
+    // 변수 a가 10과 같은지 확인하라
+    if(a == 10){
+      console.log("변수 a가 10과 같은지 확인하라");
+    }
+
+    // 변수 a가 100과 다른지 확인하라
+    if(a != 100) {
+      console.log("변수 a가 100과 다른지 확인하라");
+    }
+
+    // 변수 a가 0보다 큰지 확인하라
+    if(a > 0){
+      console.log("변수 a가 0보다 큰지 확인하라");
+    }
+
+    // 변수 a가 0보다 크고 100보다 작은지 확인하라
+    if(a > 0 && a < 100){
+      console.log("변수 a가 0보다 크고 100보다 작은지 확인하라");
+    }
+
+    // 변수 a가 0보다 크거나 7보다 작은지 확인하라
+    if(a > 0 || a < 7){
+      console.log("변수 a가 0보다 크거나 7보다 작은지 확인하라");
+    }
+
+    // 변수 a가 짝수인지 확인하라
+    if(a%2 == 0){
+      console.log("변수 a가 짝수인지 확인하라");
+    }
+
+    if(!(a%2)){
+      console.log("변수 a가 짝수인지 확인하라");
+    }
+
+    // 조건식 true
+    if(!(0)){
+      console.log("참 입니다.");
+    }
+
+    if(!(false)){
+      console.log("참 입니다.");
+    }
+
+    if(0 == 0){
+      console.log("참 입니다.");
+    }
+
+    // 조건문 주의1 - ;
+    if(!true);{
+      console.log("false인데 실행된다.");
+    }
+
+    // 조건문 주의2 - ==, =
+    var company = "band";
+    if(company = "밴드"){
+      console.log("비교가 아닌 대입이 된다.");
+    }
+
+    // 조건문 주의3 - 중괄호 감싸지 않을 때
+    var b = 10;
+
+    if(b == 1)
+    console.log("실행1");
+    console.log("실행2");
+
+    if(b == 10)
+    console.log("실행3");
+    console.log("실행4");
+
+    // 로그인 처리
+    var userID = window.prompt("사용자 아이디는");
+
+    if(userID == "kangyoungju")
+    alert("환영합니다.");
+    else
+    alert("운영자가 아닙니다.");
+
+    // 로그인 처리2
+    var userID2 = window.prompt("사용자 아이디는");
+
+    if(userID2 != "kangyoungju")
+    alert("운영자가 아닙니다.");
+    else
+    alert("환영합니다.");
+
+    /*********************************************
+    500미만이고 짝수이면 글자 색상을 red
+    500미만이고 홀수이면 글자 색상을 yellow
+    500이상이고 짝수이면 글자 색상을 orange
+    500이상이고 홀수이면 글자 색상을 green
+    *********************************************/
+
+    function getRandomNum(){
+      return Math.ceil(Math.random() * 100);
+    }
+
+    $(document).ready(function(){
+      var $body = $("body");
+
+      $("button").click(function(){
+        var $randomNum = getRandomNum();
+
+        $body.append("<p>" + $randomNum + "</p>");
+
+        if($randomNum%2 == 0){
+          if($randomNum < 50){
+            $("p:last").css("color", "red");
+          }
+
+          if($randomNum >= 50) {
+            $("p:last").css("color", "green");
+          }
+        }
+
+        if(!($randomNum%2 == 0)){
+          if($randomNum < 50){
+            $("p:last").css("color", "orange");
+          }
+
+          if($randomNum >= 50){
+            $("p:last").css("color", "gray");
+          }
+        }
+
+        if($randomNum%2 == 0 && $randomNum < 50){
+          $("p:last").css("background", "gray");
+        }
+
+        if($randomNum%2 == 0 && $randomNum >= 50){
+          $("p:last").css("background", "pink");
+        }
+      });
+    });
+
+    </script>
+
+</head>
+<body>
+<button>짝홀수</button>
+</body>
+</html>
