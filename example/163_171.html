@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>조건문 if</title>
+  <style>
+    body{font-size:13px}
+    h1,h2,h3,h4,h5,div,p,dt,dd,table,td,th{padding:0;margin:0}
+    h1{font-size:17px}
+    h2{margin:15px 0 10px;font-size:15px}
+    dt{margin-top:10px;font-weight:bold}
+    table{width:100%;margin-top:10px;border-collapse: collapse;table-layout:fixed;font-size:13px}
+    th,td{border:1px solid #ccc;padding:10px}
+
+    .square{
+      position:relative;
+      width:100px;
+      height:100px;
+      background-color: #ccc;
+      font-size:25px;
+      text-align:center;
+      line-height: 100px;
+      color:#111;
+    }
+
+  </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script>
+
+    // 조건부 연산자
+    var value = window.prompt("수를 입력해주세요");
+    value = parseInt(value);
+
+    (value%2 == 0) ? alert("짝수입니다.") : alert("홀수입니다.");
+
+   // 인풋박스에 입력을 받은 후 문자이면 alert하고 숫자이면 해당 좌표로 이동한다.
+   // 단 숫자의 범위가 화면 밖이면 alert한다.
+   $(document).ready(function(){
+     var $input = $("input[type = text]");
+     var $button = $("button");
+     var $square = $(".square");
+
+     $button.click(function(){
+       var $value = $input.val();
+       var $width = $(window).width() - 100;
+       //console.log($width);
+
+       if(!isNaN($value)){
+
+         //0보다 크고 width값 보다 작을때
+         if($value >= 0 && $value <= $width){
+           $square.animate({"left" : $value  + "px"});
+         } else{
+           alert("0 이상" + $width + "까지 입력하세요");
+         }
+
+       } else{
+         alert("숫자를 입력하세요");
+       }
+     });
+   });
+
+   </script>
+
+</head>
+<body>
+	<input type="text"></button>
+	<button>Button</button><p>
+	<div class="square"></div>
+</body>
+</html>
