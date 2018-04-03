@@ -59,22 +59,42 @@
       $button.click(function(){
         var $jumsu = $input.val();
 
+        // if(isNaN($jumsu)){
+        //   alert("숫자를 입력하세요");
+        // } else {
+        //   if($jumsu < 0 || $jumsu > 100){
+        //     alert("0에서 100사이 숫자를 넣어주세요");
+        //   } else if($jumsu >= 90){
+        //     $square.text("수");
+        //   } else if($jumsu >= 80){
+        //     $square.text("우");
+        //   } else if($jumsu >= 70){
+        //     $square.text("미");
+        //   } else if($jumsu >= 60){
+        //     $square.text("양");
+        //   } else{
+        //     $square.text("가");
+        //   }
+        // }
+
         if(isNaN($jumsu)){
           alert("숫자를 입력하세요");
-        } else {
-          if($jumsu < 0 || $jumsu > 100){
-            alert("0에서 100사이 숫자를 넣어주세요");
-          } else if($jumsu >= 90){
-            $square.text("수");
-          } else if($jumsu >= 80){
-            $square.text("우");
-          } else if($jumsu >= 70){
-            $square.text("미");
-          } else if($jumsu >= 60){
-            $square.text("양");
-          } else{
-            $square.text("가");
-          }
+        }
+
+        if($jumsu < 0 || $jumsu > 100){
+          alert("0에서 100사이 숫자를 넣어주세요");
+        }
+
+        if($jumsu >= 90){
+          $square.text("수");
+        } else if($jumsu >= 80){
+          $square.text("우");
+        } else if($jumsu >= 70){
+          $square.text("미");
+        } else if($jumsu >= 60){
+          $square.text("양");
+        } else{
+          $square.text("가");
         }
       });
     });
@@ -94,7 +114,7 @@
         }
       });
     });
-    
+
   </script>
 
 </head>
