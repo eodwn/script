@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>반복문 for</title>
+    <style>
+      body{font-size:13px}
+      h1,h2,h3,h4,h5,div,p,dt,dd,table,td,th{padding:0;margin:0}
+      h1{font-size:17px}
+      h2{margin:15px 0 10px;font-size:15px}
+      dt{margin-top:10px;font-weight:bold}
+      table{width:100%;margin-top:10px;border-collapse: collapse;table-layout:fixed;font-size:13px}
+      th,td{border:1px solid #ccc;padding:10px}
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script>
+      $(document).ready(function(){
+        function test1(){
+          var body = $("body");
+          var result = "";
+          var msg = "조건문 for";
+
+          for(var i = 0; i < 10; i++){
+            result += msg + "<br>";
+          }
+
+          body.html(result);
+        }
+
+        test1();
+
+
+        function test2(){
+          var body = $("body");
+          var result = "";
+          var msg = "자바스크립트";
+
+          for(var i = 1; i <= 10; i++){
+            result += i + "." + msg + "<br>";
+          }
+
+          body.html(result);
+        }
+
+        test2();
+
+        // 내림차순으로 출력
+        function test3(num){
+          var body = $("body");
+          var result = "";
+          var msg = "자바스크립트 예제 풀기";
+
+          for(var i = num; i > 0; i--){
+            result += i + "." + msg + "<br>";
+          }
+
+          body.html(result);
+        }
+
+        test3(100);
+
+        // 5의배수만 출력
+        function test4(num){
+          var body = $("body");
+          var result = "";
+          var msg = "자바스크립트 예제 풀기";
+
+          for(var i = num; i > 0; i--){
+            if(!(i%5)){
+              result += i + "." + msg + "<br>";
+            }
+          }
+
+          body.html(result);
+        }
+
+        test4(100);
+
+        // 짝수, 홀수 색상값 변경
+        function test5(num){
+          var body = $("body");
+          var result = "";
+          var msg = "자바스크립트 예제 풀기";
+
+          for(var i = num; i > 0; i--){
+            if(!(i%2)){
+              result += "<p style=color:red>"
+            } else{
+              result += "<p style=color:blue>"
+            }
+
+            result += i + "." + msg + "<br>";
+          }
+
+          body.html(result);
+        }
+
+        test5(100);
+
+        // 배열 + for
+        function test6(){
+          var body = $("body");
+          var result = "";
+          var data = ["변수", "연산자", "형변환", "if", "switch", "for", "while", "함수", "클래스"];
+
+          for(var i = 0; i < data.length; i++){
+            result += i + ". " + data[i] + "<br>";
+            console.log(data[i]);
+          }
+
+          body.html(result);
+        }
+
+        test6();
+
+      });
+
+    </script>
+
+</head>
+<body>
+
+</body>
+</html>
