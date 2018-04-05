@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>continue</title>
+    <style>
+      body{font-size:13px}
+      h1,h2,h3,h4,h5,div,p,dt,dd,table,td,th{padding:0;margin:0}
+      h1{font-size:17px}
+      h2{margin:15px 0 10px;font-size:15px}
+      dt{margin-top:10px;font-weight:bold}
+      table{width:100%;margin-top:10px;border-collapse: collapse;table-layout:fixed;font-size:13px}
+      th,td{border:1px solid #ccc;padding:10px}
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script>
+
+        //**************** continue *********************
+
+        for(var i = 0; i <= 10 ; i++){
+          continue;
+          console.log(i);
+        }
+
+        console.log(i);
+
+        // 5미만 숫자 출력하기
+        for(var i = 0; i < 10; i++){
+          if(i < 5){
+            console.log(i);
+            continue;
+          }
+        }
+
+        // 짝수 출력하기
+        for(var i = 0; i <= 10; i++){
+          if(i%2==1){
+            continue;
+          }
+          console.log(i);
+        }
+
+        //***************** break *********************
+
+        for(var i = 1; i <= 10; i++){
+          break;
+          console.log(l);
+        }
+        console.log(i);
+
+    </script>
+
+</head>
+<body>
+
+</body>
+</html>
