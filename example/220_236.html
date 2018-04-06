@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>시험</title>
+    <style>
+      body{font-size:13px}
+      h1,h2,h3,h4,h5,div,p,dt,dd,table,td,th{padding:0;margin:0}
+      h1{font-size:17px}
+      h2{margin:15px 0 10px;font-size:15px}
+      dt{margin-top:10px;font-weight:bold}
+      table{width:100%;margin-top:10px;border-collapse: collapse;table-layout:fixed;font-size:13px}
+      th,td{border:1px solid #ccc;padding:10px}
+
+      .image-container{
+        position: relative;
+      }
+
+      .image-container img{
+        position:absolute;
+        left:0;
+        top:0;
+        width:100px;
+      }
+
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script>
+
+    // 다중 if
+    // 별표 출력
+    for(var i = 0; i < 5; i++){
+      var result = "";
+      for(var j = 0; j <= i ; j++){
+        result += "*";
+      }
+      document.write(result + "<br>");
+    }
+
+    for(var i = 5; i > 0; i--){
+      var result = "";
+      for(var j = 0; j < i; j++){
+        result += "*";
+      }
+      document.write(result + "<br>");
+    }
+
+    // 구구단 만들기
+    for(var i = 2; i <= 9; i++){
+      for(var j = 1; j <= 9; j++){
+        document.write(i + "*" + j + "=" + (i*j) + "<br>");
+      }
+    }
+
+    // 배열의 총 합 구하기
+    var data = [10, 20, 30, 40, 50];
+    var result = 0;
+    for(var i=0; i < data.length; i++){
+      result += data[i];
+    }
+
+    document.write("배열 합은" + result + "입니다.");
+
+    // 이미지 가로 세로 배열하기
+    $(document).ready(function(){
+      $(".btnStart").click(function(){
+        var images = $("img");
+        var length = images.length;
+
+        for(var i = 0; i < length; i++){
+          var img = images.eq(i);
+          console.log(img);
+
+          var x = (i%3) * 150;
+          var y = parseInt(i/3) * 200;
+
+          images.eq(i).css({
+            left : x,
+            top : y
+          });
+        };
+      });
+    });
+
+    </script>
+
+</head>
+<body>
+  <button type="button" class="btnStart">배열시작</button>
+  <div class="image-container">
+    <img src="images/lion.jpg" width="100" alt="">
+    <img src="images/lion.jpg" width="100" alt="">
+    <img src="images/lion.jpg" width="100" alt="">
+    <img src="images/lion.jpg" width="100" alt="">
+    <img src="images/lion.jpg" width="100" alt="">
+  </div>
+</body>
+</html>
