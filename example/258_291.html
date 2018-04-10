@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>함수</title>
+    <style>
+      body{font-size:13px}
+      h1,h2,h3,h4,h5,div,p,dt,dd,table,td,th{padding:0;margin:0}
+      h1{font-size:17px}
+      h2{margin:15px 0 10px;font-size:15px}
+      dt{margin-top:10px;font-weight:bold}
+      table{width:100%;margin-top:10px;border-collapse: collapse;table-layout:fixed;font-size:13px}
+      th,td{border:1px solid #ccc;padding:10px}
+      }
+    </style>
+  </head>
+  <body>
+    <div><strong>[SAMPLE]</strong></div>
+    NAVER입니다<br>
+    NAVER입니다<br>
+    NAVER입니다<br>
+    NAVER입니다<br>
+    NAVER입니다<br>
+
+    <script>
+    // for문 + document.write 을 이용해 본다
+    for(var i = 0; i < 5; i++){
+      document.write("NAVER입니다<br>");
+    }
+
+    // 10번으로 변경해 본다
+    for(var i = 0; i < 10; i++){
+      document.write("NAVER입니다<br>");
+    }
+
+    // band를 추가해 본다
+    for(var i = 0; i < 10; i++){
+      document.write("BAND입니다<br>");
+    }
+
+    // 코드가 중복 되고 유지보수가 어렵다
+    // 함수를 활용해 본다
+    function showName(name){
+      for(var i = 0; i < 10; i++){
+        document.write(i + "." + name + "입니다<br>");
+      }
+    }
+    showName("naver");
+
+    // 매개변수를 이용해 본다
+    function showName(name, count){
+      for(var i = 0; i < count; i++){
+        document.write(i + "." + name + "입니다<br>");
+      }
+    }
+    showName("naver", 5);
+
+    // 전역변수 + 지역변수
+    var a = 10;
+    var b = 100;
+    function func1(){
+      var b = 20;
+      console.log("1. a = " + a);
+      console.log("2. b = " + b);
+
+      a = 50;
+    }
+    func1();
+
+    console.log("3. a = " + a);
+    console.log("4. b = " + b);
+
+    //젼역변수 + 매개변수
+    var foo = "전역변수";
+
+    function test(foo){
+      console.log(foo);
+    }
+    test("매개변수");
+    console.log(foo);
+
+    // 지역변수 + 매개변수
+    function test2(foo){
+      var foo = "지역변수";
+      console.log(foo);
+    }
+    test2("매개변수");
+    console.log(foo);
+
+    // 매개변수를 선언하지 않고 매개변수 값에 접근하는 방법 => arguments
+    // 매개변수의 모든 정보가 arguments객체에 담겨진다.
+    function showInfo(){
+      console.log("0 = " + arguments[0]);
+      console.log("1 = " + arguments[1]);
+      document.write("안녕하세요" + arguments[0] + "님의 나이는" + arguments[1] + "입니다.");
+    }
+    showInfo("강영주", 30);
+
+    // return => 함수 내부에서 처리한 결과값을 함수 외부로 전달하기 위해 사용하는 일종의 출력값
+    function sum(num1, num2){
+      var result = num1 + num2;
+      return result;
+    }
+    var value = sum(10,20);
+    console.log(value);
+
+    // return의 또다른 용도 => 함수를 즉시 빠져 나오는 기능
+    // break문은 루프 탈출, return문은 함수 탈출
+    function sample(){
+      var sum = 0;
+      var count = 1;
+
+      while (true) {
+        var value = parseInt(window.prompt("수 입력"));
+        if(value == 0){
+          console.log("종료합니다.");
+
+          return;
+        }
+
+        sum += value;
+        console.log(count + "." + sum);
+        count++;
+      }
+      console.log("총" + count + "번 실행했습니다.");
+    }
+
+    sample();
+
+    </script>
+
+  </body>
+</html>

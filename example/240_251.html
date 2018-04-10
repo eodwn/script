@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>반복문 while</title>
+    <style>
+      body{font-size:13px}
+      h1,h2,h3,h4,h5,div,p,dt,dd,table,td,th{padding:0;margin:0}
+      h1{font-size:17px}
+      h2{margin:15px 0 10px;font-size:15px}
+      dt{margin-top:10px;font-weight:bold}
+      table{width:100%;margin-top:10px;border-collapse: collapse;table-layout:fixed;font-size:13px}
+      th,td{border:1px solid #ccc;padding:10px}
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+  <h2>while</h2>
+  <h3>실무에서 다음과 같이 사용해요</h3>
+  <ul>
+    <li>무한반복 처리</li>
+    <li>파일 읽기</li>
+    <li>파일 전송</li>
+    <li>DB 데이터 출력하기</li>
+  </ul>
+
+  <button type=button class="button">버튼</button>
+
+  <script>
+
+    // if문은 1회 실행하지만 while은 조건이 만족하는 한 계속 반복한다.
+    // 아래 구문은 조심해야 한다. 무한루프에 빠진다.
+    var num = 0;
+    // while(num <= 100){
+    //   console.log("while문 실행");
+    // }
+
+    // 아래와 같이 무한루프에 벗어나기위해 num++ 가 필요하다.
+    while(num <= 100){
+      console.log("while문 실행");
+      num++;
+    }
+
+    // 위와 같은 경우는 while보다는 for를 사용하는 것이 안전하다.
+    // 위의 코드를 for문으로 변경하기
+    for(var num = 0; num <= 100; num++){
+      console.log("num");
+    }
+
+    // 그럼 어떤 경우에 while문을 사용하는게 좋은가?
+    // 특정 구문을 무한반복을 해야하는 경우 for문 대신 while이 더 유용하다
+    while (true) {
+      var value = window.prompt("패스워드를 입력해주세요");
+
+      if(value == "1234"){
+        alert("환영합니다.");
+        break;
+      }
+      else{
+        alert("잘못 입력했습니다. 다시 입력해주세요")
+      }
+    }
+
+    // 무인도 탈출 게임
+    $(document).ready(function(){
+      $(".button").click(function(){
+        var count =  0;
+
+        while (true) {
+          count++;
+          var number = parseInt(Math.random() * 10);
+          console.log(count + "번째 나온 숫자 =" + number);
+
+          if(number == 3){
+            console.log("탈출");
+            break;
+          }
+        }
+      });
+    });
+
+    // continue/break
+    var i = 1;
+    while(i <= 10){
+      i++;
+      continue;
+
+      document.write(i + "<br>");
+    }
+
+    document.write("최종" + i);
+
+    while (i <= 10) {
+      break;
+      i++;
+
+      document.write(i + "<br>");
+    }
+
+    document.write("최종" + i);
+
+    // 미션 for -> while으로 변경하기
+    var dan = 3;
+    for(var i = 1; i <= 9; i++){
+      document.write(dan + "*" + i+ "=" + (dan * i) + "<br>");
+    }
+
+    var dan = 3;
+    var i = 1;
+    while (i <= 9) {
+      document.write(dan + "*" + i+ "=" + (dan * i) + "<br>");
+      i++;
+    }
+
+    // 미션 end 입력될 때까지 입력값 합 구하기
+    var result = 0;
+    var i = 1;
+    while (true) {
+      var value = window.prompt(i + "번째 입력");
+
+      if(value == "end"){
+        alert("입력이 종료되었습니다.");
+        break;
+      }
+
+      result += Number(value);
+      document.write("현재 합은" + result + "<br>");
+
+      i++;
+    }
+
+    // do while
+    var count = 1;
+    do{
+      document.write("count =" + count + "<br>");
+      count++;
+    } while (count < 5);
+    var count = 1;
+
+    var count = 10;
+    do{
+      document.write("count =" + count);
+      count++;
+    } while (count < 5);
+
+    // for in
+    var obj = {x:10, y:11, z:12};
+    for (property in obj){
+        console.log("name: " + property + "; value: " + obj[property]);
+    }
+
+    var array = [10,11,12];
+    for (property in array){
+        console.log("name: " + property + "; value: " + array[property]);
+    }
+
+  </script>
+</body>
+</html>
