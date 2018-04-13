@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>함수 미션</title>
+    <style>
+      body{font-size:13px}
+      h1,h2,h3,h4,h5,div,p,dt,dd,table,td,th{padding:0;margin:0}
+      h1{font-size:17px}
+      h2{margin:15px 0 10px;font-size:15px}
+      dt{margin-top:10px;font-weight:bold}
+      table{width:100%;margin-top:10px;border-collapse: collapse;table-layout:fixed;font-size:13px}
+      th,td{border:1px solid #ccc;padding:10px}
+      .area{
+        position: relative;
+        width: 1000px;
+        height: 700px;
+        border:1px solid #ccc;
+      }
+
+      .lion{
+        position: absolute;
+        left:50px;
+        top:50px;
+      }
+
+      .tab-menu{
+        list-style:none;
+        height:80px;
+      }
+
+      .tab-menu li{
+        width:90px;
+        height:40px;
+        background-color:#ccc;
+        overflow:hidden;
+        display:inline-block;
+        float:left;
+        text-align:center;
+        line-height: 40px;
+      }
+
+      .tab-menu li:hover{
+        background-color:#ddd;
+      }
+
+      .tab-menu .select{
+        background-color:#ddd;
+        font-weight: bold;
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  </head>
+  <body>
+
+    <div class="area" id="panel">
+      <img src="images/lion.jpg" width="100" class="lion" alt="">
+      <img src="images/lion.jpg" width="100" class="lion" alt="">
+      <img src="images/lion.jpg" width="100" class="lion" alt="">
+      <img src="images/lion.jpg" width="100" class="lion" alt="">
+      <img src="images/lion.jpg" width="100" class="lion" alt="">
+      <img src="images/lion.jpg" width="100" class="lion" alt="">
+      <img src="images/lion.jpg" width="100" class="lion" alt="">
+      <img src="images/lion.jpg" width="100" class="lion" alt="">
+    </div>
+
+    <button type="button" id="btnStart">버튼</button>
+
+    <p>첫 번째 탭메뉴</p>
+    <ul class="tab-menu" id="tabMenu1">
+      <li class="menuitem1">탭메뉴1</li>
+      <li class="menuitem2">탭메뉴2</li>
+      <li class="menuitem3">탭메뉴3</li>
+      <li class="menuitem4">탭메뉴4</li>
+      <li class="menuitem5">탭메뉴5</li>
+      <li class="menuitem6">탭메뉴6</li>
+    </ul>
+
+    <p>두 번째 탭메뉴</p>
+    <ul class="tab-menu" id="tabMenu2">
+      <li class="menuitem1">탭메뉴1</li>
+      <li class="menuitem2">탭메뉴2</li>
+      <li class="menuitem3">탭메뉴3</li>
+      <li class="menuitem4">탭메뉴4</li>
+      <li class="menuitem5">탭메뉴5</li>
+      <li class="menuitem6">탭메뉴6</li>
+    </ul>
+    <script>
+
+    // 갤러리
+    // $(document).ready(function(){
+    //   // 이미지 찾기
+    //   var images = $("#panel img");
+    //
+    //   // 버튼 클릭 이벤트 실행
+    //   $("#btnStart").click(function(){
+    //     // 이미지 개수 구하기
+    //     var length = images.length;
+    //
+    //     // 이미지 배열하기
+    //     for(var i = 0; i < length; i++){
+    //       // n번째 이미지 구하기
+    //       var img = images.eq(i);
+    //       // 위치 값 구하기
+    //       var x = 50 + ((i % 3) * 200);
+    //       var y = 50 + (parseInt(i / 3) * 200);
+    //
+    //       // 위치 설정
+    //       images.eq(i).css({
+    //         left:x,
+    //         top:y
+    //       });
+    //     }
+    //   });
+    // });
+
+    // 위 코드 함수로 만들기
+    var images = null;
+
+    $(document).ready(function(){
+      init();
+      initEvent();
+
+      showGallery(3, 200, 200);
+    });
+
+    // 요소 초기화
+    function init(){
+      // 이미지 찾기
+      images = $("#panel img");
+    }
+
+    // 이벤트 초기화
+    function initEvent(){
+      $("#btnStart").click(function(){
+        showGallery(5, 120, 220);
+      });
+    }
+
+    // 이미지 배열하기
+    function showGallery(count, width, height){
+      // 이미지 개수 구하기
+      var length = images.length;
+
+      for(var i = 0; i < length; i++){
+        // n번째 이미지 구하기
+        var img = images.eq(i);
+
+        // 위치 값 구하기
+        var x = 100 + ((i % count) * width);
+        var y = 100 + (parseInt(i / count) * height);
+
+        // 위치 설정
+        images.eq(i).css({
+          left:x,
+          top:y
+        });
+      }
+    }
+
+    // 탭메뉴
+    // $(document).ready(function(){
+    //   /* 첫번째 탭 메뉴 처리 */
+    //   // 선택한 탭메뉴를 저장할 변수
+    //   var selectMenuItem = null;
+    //
+    //   // 메뉴 항목에 클릭 이벤트 등록
+    //   $("#tabMenu1 li").click(function(){
+    //     // 기존 선택 메뉴 항목이 있으면 비선택 상태로 만들기
+    //     if(selectMenuItem != null){
+    //       selectMenuItem.removeClass("select");
+    //     }
+    //
+    //     // 클릭한 메뉴 항목을 신규 선택 메뉴 항목으로 저장
+    //     selectMenuItem = $(this);
+    //     // 선택 상태로 만들기
+    //     selectMenuItem.addClass("select");
+    //   });
+    //
+    //   /* 두번째 탭 메뉴 처리 */
+    //   // 선택한 탭메뉴를 저장할 변수
+    //   var selectMenuItem2 = null;
+    //
+    //   // 메뉴 항목에 클릭 이벤트 등록
+    //   $("#tabMenu2 li").click(function(){
+    //     // 기존 선택 메뉴 항목이 있으면 비선택 상태로 만들기
+    //     if(selectMenuItem2 != null){
+    //       selectMenuItem2.removeClass("select");
+    //     }
+    //
+    //     // 클릭한 메뉴 항목을 신규 선택 메뉴 항목으로 저장
+    //     selectMenuItem2 = $(this);
+    //     // 선택 상태로 만들기
+    //     selectMenuItem2.addClass("select");
+    //   });
+    // });
+
+    // 위 코드 함수로 만들기
+    $(document).ready(function(){
+      tabMenu("#tabMenu1 li");
+      tabMenu("#tabMenu2 li");
+    });
+
+    function tabMenu(selector){
+      // 선택한 탭메뉴를 저장할 변수
+      var selectMenuItem = null;
+
+      $(selector).click(function(){
+        // 기존 선택 메뉴 항목이 있으면 비선택 상태로 만들기
+        if(selectMenuItem != null){
+          selectMenuItem.removeClass("select");
+        }
+
+        // 클릭한 메뉴 항목을 신규 선택 메뉴 항목으로 저장
+        selectMenuItem = $(this);
+        console.log(this);
+        // 선택 상태로 만들기
+        selectMenuItem.addClass("select");
+      });
+    }
+
+    </script>
+
+  </body>
+</html>
