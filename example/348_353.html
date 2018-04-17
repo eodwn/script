@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>함수 리터럴과 익명 함수</title>
+    <style>
+      body{font-size:13px}
+      h1,h2,h3,h4,h5,div,p,dt,dd,table,td,th{padding:0;margin:0}
+      h1{font-size:17px}
+      h2{margin:15px 0 10px;font-size:15px}
+      dt{margin-top:10px;font-weight:bold}
+      table{width:100%;margin-top:10px;border-collapse: collapse;table-layout:fixed;font-size:13px}
+      th,td{border:1px solid #ccc;padding:10px}
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+  <body>
+
+    <button id ="btn">버튼</button>
+    <div id ="info"></div>
+
+      <script>
+
+        /* 데이터를 만드는 방법 */
+        // 리터럴 방식
+        var num = 10;
+        var str = "naver";
+        var boo = true;
+        var arr = [1,2,3];
+        console.log(num, str, boo, arr);
+
+        // 객체 방식
+        var num = new Number(10);
+        var str = new String("naver");
+        var boo = new Boolean(true);
+        var arr = new Array(1,2,3);
+        console.log(num, str, boo, arr);
+
+        // 함수표현식과 리터털의 차이
+        // hoist (호이스트, 끌어올림)
+        //hello();
+        //hell2();
+
+        // 일반적인 방식 - 호이스트가 일어난다
+        function hello(){
+          console.log("hello");
+        }
+        hello();
+
+        // 리터럴 방식 - 익명함수 , 함수가 정의된 시점에 호출
+        var hello2 = function(){
+          console.log("hello")
+        }
+        hello2();
+
+        // 객체 방식 - 자주 쓰이지 않는다
+        var hello3 = new Function(console.log("hello"));
+        hello3();
+
+
+
+        // 익명함수와 일반함수
+        // 익명
+        $(document).ready(function(){
+          console.log("익명함수");
+        });
+
+        // 일반
+        function startFunction(){
+          console.log("일반함수");
+        }
+        $(document).ready(startFunction);
+
+        // 버튼을 클릭할 때 마다 숫자를 증가 (익명함수)
+        $(document).ready(function(){
+          var info = $("#info");
+          var count = 0;
+
+          $("#btn").click(function(){
+            count++;
+            info.append("<p>" + count + "</p>");
+          });
+        });
+
+        // 버튼을 클릭할 때 마다 숫자를 증가 (일반함수)
+        $(document).ready(function(){
+          var info = $("#info");
+          var num = 0;
+
+          $("#btn").click(function(){
+            count();
+          });
+
+          function count(){
+            num++;
+            info.append("<p>" + num + "</p>");
+          };
+        });
+
+       </script>
+
+  </body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>함수 정의 방법 4가지</title>
+    <style>
+      body{font-size:13px}
+      h1,h2,h3,h4,h5,div,p,dt,dd,table,td,th{padding:0;margin:0}
+      h1{font-size:17px}
+      h2{margin:15px 0 10px;font-size:15px}
+      dt{margin-top:10px;font-weight:bold}
+      table{width:100%;margin-top:10px;border-collapse: collapse;table-layout:fixed;font-size:13px}
+      th,td{border:1px solid #ccc;padding:10px}
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+  <body>
+
+    <script>
+
+    /********** 함수 정의 방법 4가지 ***********/
+    // 1. function 키워드 이용 방법
+    function hello(name){
+      console.log(name + "환영합니다.");
+    }
+    hello("naver");
+
+    // 2. 함수 리터럴 이용하는 방법
+    var hello = function(name){
+      console.log(name + "환영합니다.")
+    }
+    hello("naver");
+
+    // 함수 리터럴 방식이 다음처럼 변형돼 사용되는 경우
+    // 2-1. 리터럴 방식으로 클래스의 멤버함수(메서드)
+    var myClass = {
+      test : function(){
+
+      }
+    }
+
+    // 2-2. object 방식으로 클래스의 멤버함수(매서드)
+    function MyClass(){
+      this.test = function(){
+
+      }
+    }
+
+    // 2-3. prototype 방식으로 클래스의 멤버함수
+    function MyClass(){
+
+    }
+    MyClass.prototype.test = function(){
+
+    }
+
+    // 3. function 객체를 이용 - 실무에서 거의 사용하지 않음
+    var hello = new Function("name", "console.log(name + '환영합니다.')");
+    hello("naver");
+
+    // 4. 익명 함수 확장 - 재사용하는것이 목적이 아닌 다른 함수 간의 충돌을 막기위해 사용
+    // 즉시실행함수
+    (function(name){
+      console.log(name + " hello");
+    })("naver");
+
+    </script>
+
+</body>
+</html>

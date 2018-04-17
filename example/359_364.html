@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>중첩 함수</title>
+    <style>
+      body{font-size:13px}
+      h1,h2,h3,h4,h5,div,p,dt,dd,table,td,th{padding:0;margin:0}
+      h1{font-size:17px}
+      h2{margin:15px 0 10px;font-size:15px}
+      dt{margin-top:10px;font-weight:bold}
+      table{width:100%;margin-top:10px;border-collapse: collapse;table-layout:fixed;font-size:13px}
+      th,td{border:1px solid #ccc;padding:10px}
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+  <body>
+     <script>
+
+        // 중첨합수의 범위
+        var a = 10;
+        var b = 20;
+
+        var outerFunction = function(){
+          var a = 100;
+
+          var innerFunction = function(){
+            var a = 1000;
+            b = 2000;
+
+            console.log("innerFunction", a);
+            console.log("innerFunction", b);
+          }
+
+            innerFunction();
+
+            console.log("outerFunction", a);
+            console.log("outerFunction", b);
+        }
+
+        outerFunction();
+
+        console.log("global", a);
+        console.log("global", b);
+
+        // 계산기 코드를 중첩함수 형태로 바꾸어 보자.
+//        function calculator(op, num1, num2) {
+//            var result = "";
+//
+//            switch(op) {
+//                case "+":
+//                    result = add(num1, num2);
+//                    break;
+//
+//                case "-":
+//                    result = sub(num1, num2);
+//                    break;
+//
+//                case "*":
+//                    result = mul(num1, num2);
+//                    break;
+//
+//                case "/":
+//                    result = div(num1, num2);
+//                    break;
+//
+//                default:
+//                    result = "지원하지 않는 연산자입니다.";
+//            }
+//
+//            return result;
+//        }
+//
+//        function add(num1, num2){
+//            return num1 + num2;
+//        }
+//
+//        function sub(num1, num2){
+//            return num1 - num2;
+//        }
+//
+//        function mul(num1, num2){
+//            return num1 * num2;
+//        }
+//
+//        function div(num1, num2){
+//            return num1 / num2;
+//        }
+
+
+
+        function calculator(op, num1, num2) {
+            var result = "";
+
+            switch(op) {
+                case "+":
+                    result = add(num1, num2);
+                    break;
+
+                case "-":
+                    result = sub(num1, num2);
+                    break;
+
+                case "*":
+                    result = mul(num1, num2);
+                    break;
+
+                case "/":
+                    result = div(num1, num2);
+                    break;
+
+                default:
+                    result = "지원하지 않는 연산자입니다.";
+            }
+
+
+            function add(num1, num2){
+                return num1 + num2;
+            }
+
+            function sub(num1, num2){
+                return num1 - num2;
+            }
+
+            function mul(num1, num2){
+                return num1 * num2;
+            }
+
+            function div(num1, num2){
+                return num1 / num2;
+            }
+
+            return result;
+        }
+
+        console.log(calculator("+", 10, 20));
+        console.log(calculator("-", 10, 20));
+        console.log(calculator("*", 10, 20));
+        console.log(calculator("/", 10, 20));
+
+      </script>
+    </body>
+</html>
