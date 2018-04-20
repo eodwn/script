@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>콜백 함수</title>
+    <style>
+      body{font-size:13px}
+      h1,h2,h3,h4,h5,div,p,dt,dd,table,td,th{padding:0;margin:0}
+      h1{font-size:17px}
+      h2{margin:15px 0 10px;font-size:15px}
+      dt{margin-top:10px;font-weight:bold}
+      table{width:100%;margin-top:10px;border-collapse: collapse;table-layout:fixed;font-size:13px}
+      th,td{border:1px solid #ccc;padding:10px}
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+  <body>
+
+    <p>콜백 함수는 주로 함수 내부의 처리 결과값을 함수 외부로 내보낼 때 사용</p>
+
+    <button id = "btn">버튼</button>
+
+    <script>
+
+      // 매개변수로 함수 호출하기
+      function hello(callback){
+
+        callback();
+      }
+
+      function f(){
+        console.log("함수 f 입니다.");
+      }
+
+      hello(f);
+
+      // add 함수
+      function add(num1, num2){
+       var result = num1 + num2;
+
+       console.log("정답 :" + result);
+      }
+
+      add(10, 3);
+
+      // 출력을 영어로 하기 위해 add2를 만든다
+      function add2(num1, num2){
+       var result = num1 + num2;
+
+       console.log("Answer :" + result);
+      }
+
+      add2(100, 3);
+
+      // 로직 처리부분을 분리하여 구현해 본다. - 유연해진다
+      function add3(num1, num2, print){
+       var result = num1 + num2;
+       print(result);
+      }
+
+      function printKor(){
+       console.log("정답 :" + result);
+      }
+
+      function printEng(){
+       console.log("Answer :" + result);
+      }
+
+      add(10, 3, printKor);
+      add(100, 3, printEng);
+
+
+      /* return vs 콜백함수 */
+      // return : 단순한 처리에 이용하는게 효율적
+      function sum(num1, num2){
+          return num1 + num2;
+      }
+
+      var result = sum(10,20);
+
+      console.log("두수의 합은 =" + result + " 입니다");
+
+      // 콜백함수 : 처리 부분이 구현 부분과 분리되어야 하는 경우나 처리 부분을 다양하게 만든 후 실행 시에 연결해서 사용하는 경우 적합  적합
+      function sum2(num1, num2, callback) {
+          var temp = num1 + num2;
+          callback(temp);
+      }
+
+      function result2(value) {
+          console.log("두수의 합은 =" + value + " 입니다");
+      }
+
+      sum2(100, 20, result2);
+
+
+      /* 동기 vs 비동기 */
+
+      // 동기식은 리턴으로 값을 받는다.
+      function alertMsg(){
+       var count = 0;
+
+       for(var i = 0; i <= 10; i++){
+         count += i;
+       }
+
+       alert(count);
+       return count;
+      }
+      console.log(alertMsg());
+
+      // 동기(결과를 callback으로 알린다.)
+      function alertMsg2(callback){
+         var count = 0;
+
+         for(var i = 0; i <= 10; i++){
+             count += i;
+         }
+
+         alert(count);
+         callback(count);
+      }
+
+      function print(value){
+         console.log(value);
+      }
+
+      alertMsg2(print);
+
+      // 비동기(결과를 return으로 알린다)
+      function alertMsg3(){
+       var count = 0;
+
+       setTimeout(function(){
+         for(var i = 1; i <= 10; i++){
+           count += i;
+         }
+
+         return count;
+       }, 1000)
+      }
+      console.log(alertMsg3());
+
+      // 비동기(결과를 callback으로 알린다)
+      function alertMsg4(func){
+       var count = 0;
+
+       setTimeout(function(){
+         for(var i = 1; i <= 10; i++){
+           count += i;
+         }
+         func(count);
+       }, 1000);
+
+       alert(count);
+       return count;
+      }
+
+      function print(result){
+       console.log(result);
+      }
+
+      alertMsg4(print);
+
+      /* 실무에서 이렇게 사용해요 */
+      // 1. 이벤트 리스너로 사용
+      $("#btn").click(function(){
+        console.log("클릭되었습니다.");
+      });
+
+      // 2. 타이머 실행 함수로 사용
+      setinterval(function(){
+        console.log("1초마다 한 번씩 실행되요");
+      }, 1000);
+
+      // 3. Ajax 결과값을 받을때 사용
+      $.get("http://www.webdong.com/test.php", function(){
+        console.log("정상적으로 서버 통신이 이뤄졌습니다.");
+      });
+
+      // 4. jQuery 애니메이션 완료
+      $("#target").animate({
+        left : 100,
+        opacity : 1
+      }, 2000, "easeOutQuint", function(){
+        console.log("애니메이션이 완료되었습니다.");
+      })
+
+    </script>
+
+  </body>
+</html>
