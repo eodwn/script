@@ -13,7 +13,7 @@
       th,td{border:1px solid #ccc;padding:10px}
 
       #output,
-      #output3{
+      #output4{
         width:100px;
         height:100px;
         border:1px solid #ccc;
@@ -22,8 +22,9 @@
         line-height: 100px;
       }
 
-      #output2{
-        width:200px;
+      #output2,
+      #output3{
+        width:500px;
         height:100px;
         margin-top:10px;
         border:1px solid #ccc;
@@ -31,7 +32,8 @@
         text-align:center;
         line-height: 100px;
       }
-      #stop{
+      #stop,
+      #stop2{
         font-size:15px;
       }
     </style>
@@ -50,7 +52,9 @@
     <div id="output"></div>
     <div id="output2"></div>
     <div id="output3"></div>
-    <button type="button" id="stop">중지 버튼</button>
+    <div id="output4"></div>
+    <button type="button" id="stop">clearTimeout 버튼</button>
+    <button type="button" id="stop2">clearInterval 버튼</button>
 
     <script>
 
@@ -91,19 +95,35 @@
         }, 3000);
       });
 
+      // clearTimeout
+      // 중지버튼을 누르면 함수를 중지시켜보자
+      $(document).ready(function(){
+          var output3 = $("#output3");
+          var count = 0;
+          var timerId = 0;
+
+          timerId = setTimeout(function(){
+              output3.text("안녕하세요, 영주님 환영합니다.");
+          }, 5000);
+
+          $("#stop").click(function(){
+              clearTimeout(timerId);
+          });
+      });
+
       // clearInterval
       // 중지버튼을 누르면 함수를 중지시켜보자
       $(document).ready(function(){
-        var output3 = $("#output3");
+        var output4 = $("#output4");
         var count = 0;
         var timerId = 0;
 
         timerId = setInterval(function(){
           count++;
-          output3.text(count);
+          output4.text(count);
         }, 1000);
 
-        $("#stop").click(function(){
+        $("#stop2").click(function(){
           clearInterval(timerId);
         });
       });
