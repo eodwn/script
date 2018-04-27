@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Date 클래스 소개</title>
+    <style>
+      body{font-size:13px}
+      h1,h2,h3,h4,h5,div,p,dt,dd,table,td,th{padding:0;margin:0}
+      h1{font-size:17px}
+      h2{margin:15px 0 10px;font-size:15px}
+      dt{margin-top:10px;font-weight:bold}
+      table{width:100%;margin-top:10px;border-collapse: collapse;table-layout:fixed;font-size:13px}
+      th,td{border:1px solid #ccc;padding:10px}
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+  <body>
+
+    <h2>실무에서 다음과 같은 기능을 구현할 수 있다</h2>
+    <ul>
+      <li>시간, 분, 초, 밀리초 알아내기</li>
+      <li>년, 월, 일, 요일 알아내기</li>
+    </ul>
+
+    <div id="output"></div>
+    <div id="output2"></div>
+
+    <script>
+
+      // 현재 시간 출력하기
+      $(document).ready(function(){
+        var output = $("#output");
+        var objDate = new Date();
+        var hours = objDate.getHours();
+        var minutes = objDate.getMinutes();
+        var seconds = objDate.getSeconds();
+        var millseconds = objDate.getMilliseconds();
+
+        output.html(hours + ":" + minutes + ":" + seconds + "." + millseconds);
+      })
+
+      // 오늘 날짜 출력하기
+      $(document).ready(function(){
+        var output2 = $("#output2");
+        var objDate = new Date();
+        var year = objDate.getFullYear();
+        var month = objDate.getMonth();
+        var date = objDate.getDate();
+        var day = objDate.getDay();
+        var aryDay = ["일", "월", "화", "수", "목", "금", "토"];
+
+        output2.html(year + "년" + (month + 1) + "월" + date + "일" + aryDay[day] + "요일");
+      })
+
+
+    </script>
+
+    </body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>arguments</title>
+    <style>
+      body{font-size:13px}
+      h1,h2,h3,h4,h5,div,p,dt,dd,table,td,th{padding:0;margin:0}
+      h1{font-size:17px}
+      h2{margin:15px 0 10px;font-size:15px}
+      dt{margin-top:10px;font-weight:bold}
+      table{width:100%;margin-top:10px;border-collapse: collapse;table-layout:fixed;font-size:13px}
+      th,td{border:1px solid #ccc;padding:10px}
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+  <body>
+
+    <p>arguments 객체는 매개변수 갯수가 확정되지 않는 가변 인자 함수를 구현할 때 유용</p>
+
+    <script>
+
+      function sum(){
+          var res = 0;
+
+          for(var i =0; i < arguments.length; i++){
+              res += arguments[i];
+          }
+
+          return res;
+      }
+
+      console.log(sum());
+      console.log(sum(1, 2));
+      console.log(sum(1, 2, 3));
+
+
+      // 유사배열객체는 배열이 아니므로 배열 메소드를 사용하려면 .prototype.call, .prototype.apply를 사용하여야 한다.
+      function sum2(){
+          if(!arguments.length){
+              return 0;
+          }
+
+          // arguments 객체를 배열로 변환
+          var array = Array.prototype.slice.call(arguments);
+          console.log(array);
+          return array.reduce(function(pre, cur){
+              return pre + cur;
+          });
+      }
+
+      console.log(sum2(1,2,3,4,5));
+
+      //기본 매개변수를 사용
+      function bar(a=1){
+          arguments[0] = 100;
+          return a;
+      }
+
+      console.log(bar(10));
+
+
+      // 매개변수가 없는 경우
+      function zoo(a){
+          arguments[0] = 100;
+          return a;
+      }
+
+      console.log(zoo(10));
+
+    </script>
+
+    </body>
+</html>

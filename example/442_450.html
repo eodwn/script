@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Math 클래스 소개</title>
+    <style>
+      body{font-size:13px}
+      h1,h2,h3,h4,h5,div,p,dt,dd,table,td,th{padding:0;margin:0}
+      h1{font-size:17px}
+      h2{margin:15px 0 10px;font-size:15px}
+      dt{margin-top:10px;font-weight:bold}
+      table{width:100%;margin-top:10px;border-collapse: collapse;table-layout:fixed;font-size:13px}
+      th,td{border:1px solid #ccc;padding:10px}
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+  <body>
+
+    <h2>실무에서 다음과 같은 기능을 구현할 수 있다</h2>
+    <ul>
+      <li>랜덤 숫자 만들기</li>
+      <li>작은 값, 큰 값 알아내기</li>
+      <li>숫자 내림값, 올림값 구하기</li>
+    </ul>
+
+    <div id="info"></div>
+
+    <script>
+
+      // random
+      // 0.5초에 한 번씩 50에서 100 사이의 숫자를 info에 출력해 보자
+      var info = null;
+
+      $(document).ready(function(){
+        info = $("#info");
+
+        showRandom();
+
+        setInterval(showRandom, 500);
+
+        function showRandom(){
+          var value = parseInt(Math.random() * 50) + 50;
+          info.html(value);
+        }
+      });
+
+      // min, max
+      /* 10에서 100 사이의 값이면 입력받은 숫자 값을 출력하고
+      10보다 작은 경우 10을, 100보다 큰 경우 100으로 출력해 보자 */
+      var value = window.prompt("숫자를 입력해 주세요", 0);
+
+      value = Math.min(100, Math.max(10, value));
+
+      // if(value < 10){
+      //   value = 10;
+      // }
+      //
+      // if(value > 100){
+      //   value = 100;
+      // }
+
+      alert(value);
+
+      // floor, ceil
+      var num = Math.floor(10.2);
+      console.log(num);
+
+      var num = Math.floor(10.9);
+      console.log(num);
+
+      var num = Math.ceil(10.2);
+      console.log(num);
+
+      var num = Math.ceil(10.9);
+      console.log(num);
+
+      var itemCount = 105;
+      // var pages = parseInt(itemCount/10);
+      // if(itemCount % 10){
+      //   pages++;
+      // }
+
+      var pages = Math.ceil(itemCount/10);
+
+      console.log("전체 페이지 수는 =" + pages);
+
+    </script>
+
+    </body>
+</html>

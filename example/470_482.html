@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>String 클래스 소개</title>
+    <style>
+      body{font-size:13px}
+      h1,h2,h3,h4,h5,div,p,dt,dd,table,td,th{padding:0;margin:0}
+      h1{font-size:17px}
+      h2{margin:15px 0 10px;font-size:15px}
+      dt{margin-top:10px;font-weight:bold}
+      table{width:100%;margin-top:10px;border-collapse: collapse;table-layout:fixed;font-size:13px}
+      th,td{border:1px solid #ccc;padding:10px}
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+  <body>
+
+    <h2>실무에서 다음과 같은 기능을 구현할 수 있다</h2>
+    <ul>
+      <li>문자열 만들기</li>
+      <li>문자열 길이 알아내기</li>
+      <li>특정 위치의 문자 구하기</li>
+      <li>문자(열) 위치 찾기</li>
+      <li>특정 위치에 문자 추가</li>
+      <li>특정 위치의 문자를 다른 문자로 변경하기</li>
+      <li>특정 위치에 문자 제거</li>
+    </ul>
+
+    <div id="output"></div>
+
+    <script>
+
+      // 문자열 만들기
+      var str = "hello";
+      var str = new String("hello");
+
+      console.log("hello".length);
+      //new String("hello").length
+      console.log("hello".charAt(0));
+      //new String("hello").charAt(0);
+
+      // 문자열 길이 알아내기
+      var str = window.prompt("문자를 입력해 주세요");
+      console.log("문자열길이는 =" + str.length);
+
+      // 특정 위치의 문자 구하기
+      // 입력받은 문자열을 1초마다 한 문자씩 출력해 보자
+      $(document).ready(function(){
+        var str = window.prompt("문자를 입력해 주세요");
+        var output = $("#output");
+        var index = 0;
+
+        var timerID = setInterval(function(){
+          var ch = str.charAt(index);
+
+          output.text(ch);
+
+          index++;
+
+          if(index > str.length){
+            clearInterval(timerID);
+            alert("종료됐습니다.");
+          }
+        }, 1000);
+      });
+
+      // 문자열 위치 찾기
+      var data = window.prompt("문자를 입력해 주세요");
+      var index = data.indexOf("sample");
+      if(index >= 0){
+        console.log(index + "번째 위치에 있습니다.");
+      } else{
+        console.log("문자가 존재하지 않습니다.");
+      }
+
+      // 특정 위치에 문자 추가
+      // slice
+      var str = "abcdef";
+      var str2 = str.slice(2,4);
+      console.log(str);
+      console.log(str2);
+
+      // substr
+      var str = "abcdef";
+      var str2 = str.substr(2,2);
+      console.log(str);
+      console.log(str2);
+
+      var data = "naver band";
+      var result = data.slice(0, 5) + "-" + data.slice(6, data.length);
+      console.log(result);
+
+      var data2 = "네이버 밴드";
+      var result2 = data2.substr(0, 3) + "-" + data2.substr(4, data2.length-2);
+      console.log(data2.length-2);
+      console.log(result2);
+
+      // 특정 위치의 문자를 다른 문자로 변경하기
+      var data3 = "안녕하세요, ?님 환영합니다.";
+      var result3 = data3.replace("?", "naver");
+      console.log(result3);
+
+      // 특정 위치에 문자 제거
+      var data4 = "naver-band";
+      var result4 = data4.slice(0, 5) + data4.slice(6, data4.length);
+      console.log(data4.length);
+      console.log(result4);
+    </script>
+
+    </body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>타이머 함수</title>
+    <style>
+      body{font-size:13px}
+      h1,h2,h3,h4,h5,div,p,dt,dd,table,td,th{padding:0;margin:0}
+      h1{font-size:17px}
+      h2{margin:15px 0 10px;font-size:15px}
+      dt{margin-top:10px;font-weight:bold}
+      table{width:100%;margin-top:10px;border-collapse: collapse;table-layout:fixed;font-size:13px}
+      th,td{border:1px solid #ccc;padding:10px}
+
+      #output,
+      #output3{
+        width:100px;
+        height:100px;
+        border:1px solid #ccc;
+        font-size:30px;
+        text-align:center;
+        line-height: 100px;
+      }
+
+      #output2{
+        width:200px;
+        height:100px;
+        margin-top:10px;
+        border:1px solid #ccc;
+        font-size:20px;
+        text-align:center;
+        line-height: 100px;
+      }
+      #stop{
+        font-size:15px;
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+  <body>
+
+    <h2>실무에서 다음과 같은 경우에 많이 사용</h2>
+    <ul>
+      <li>이미지 슬라이더에서 일정 시간마다 이미지가 자동으로 슬라이드 되는 기능</li>
+      <li>롤링 배너에서 일정 시간마다 배너를 변경할때</li>
+      <li>일정 시간마다 자동으로 변경되는 실시간 검색어</li>
+      <li>게임에서 플레이 시간을 나타낼 때</li>
+    </ul>
+
+    <div id="output"></div>
+    <div id="output2"></div>
+    <div id="output3"></div>
+    <button type="button" id="stop">중지 버튼</button>
+
+    <script>
+
+      // setInterval
+      // 1초에 한 번씩 변숫값을 1씩 증가시켜보자
+      $(document).ready(function(){
+        var output = $("#output");
+        var count = 0;
+
+        setInterval(function(){
+          count++;
+          output.text(count);
+        }, 1000)
+      });
+
+      // 익명함수를 일반함수로 만들어 사용해보자
+      $(document).ready(function(){
+        var output = $("#output");
+        var count = 0;
+
+        function addCount(){
+          count++;
+          output.text(count);
+        }
+
+        addCount();
+
+        setInterval(addCount, 1000)
+      });
+
+      // setTimeout
+      // 3초 후에 안녕하세요. 환영합니다. 화면에 출력해보자
+      $(document).ready(function(){
+        var output2 = $("#output2");
+
+        setTimeout(function(){
+          output2.text("안녕하세요, 환영합니다.");
+        }, 3000);
+      });
+
+      // clearInterval
+      // 중지버튼을 누르면 함수를 중지시켜보자
+      $(document).ready(function(){
+        var output3 = $("#output3");
+        var count = 0;
+        var timerId = 0;
+
+        timerId = setInterval(function(){
+          count++;
+          output3.text(count);
+        }, 1000);
+
+        $("#stop").click(function(){
+          clearInterval(timerId);
+        });
+      });
+
+    </script>
+
+    </body>
+</html>
