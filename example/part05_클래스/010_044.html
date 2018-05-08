@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>CHAPTER 01 클래스 기초</title>
+    <style>
+  		body{font-size:13px}
+  		h1,h2,h3,h4,h5,div,p,dt,dd,table,td,th{padding:0;margin:0}
+  		h1{font-size:17px}
+  		h2{margin:15px 0 10px;font-size:15px}
+  		dt{margin-top:10px;font-weight:bold}
+  		table{width:100%;margin-top:10px;border-collapse: collapse;table-layout:fixed;font-size:13px}
+  		th,td{border:1px solid #ccc;padding:10px}
+
+      .tab-menu {
+  			list-style: none;
+  			height:80px;
+  		}
+  		.tab-menu li {
+  			width:99px;
+  			height:40px;
+  			background-position-y:0;
+  			text-indent: -1000px;
+  			overflow: hidden;
+  			display: inline-block;
+  			float:left;
+  		}
+  		.tab-menu li:hover {
+  			background-position-y: -40px;
+  		}
+  		.tab-menu li.select {
+  			background-position-y: -80px;
+  			height:80px;
+  		}
+  		.tab-menu li.menuitem1 {
+  			background-image: url(images/newbtn.bar.1.png);
+  		}
+  		.tab-menu li.menuitem2 {
+  			background-image: url(images/newbtn.bar.2.png);
+  		}
+  		.tab-menu li.menuitem3 {
+  			background-image: url(images/newbtn.bar.3.png);
+  		}
+  		.tab-menu li.menuitem4 {
+  			background-image: url(images/newbtn.bar.4.png);
+  		}
+  		.tab-menu li.menuitem5 {
+  			background-image: url(images/newbtn.bar.5.png);
+  		}
+  		.tab-menu li.menuitem6 {
+  			background-image: url(images/newbtn.bar.6.png);
+  		}
+
+  	</style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+  <p>첫 번째 탭메뉴</p>
+  <ul class="tab-menu" id="tabMenu1">
+    <li class="menuitem1">google</li>
+    <li class="menuitem2">facebook</li>
+    <li class="menuitem3">pinterest</li>
+    <li class="menuitem4">twitter</li>
+    <li class="menuitem5">airbnb</li>
+    <li class="menuitem6">path</li>
+  </ul>
+
+  <ul class="tab-menu" id="tabMenu2">
+    <li class="menuitem1">google</li>
+    <li class="menuitem2">facebook</li>
+    <li class="menuitem3">pinterest</li>
+    <li class="menuitem4">twitter</li>
+    <li class="menuitem5">airbnb</li>
+    <li class="menuitem6">path</li>
+  </ul>
+
+  <script>
+
+    // 리터럴 방식을 활용한 간단한 클래스 만들기
+    var user = {
+      name : "kangyoungju",
+      age : 10,
+      showInfo : function(){
+        document.write("name =" + this.name + ", age =" + this.age);
+      }
+    }
+
+    user.showInfo();
+
+    // 탭메뉴 관련 변수
+    var tabMenu = null;
+    var menuItems = null;
+    var selectMenuItem = null;
+
+    /*
+      함수 단위 코딩으로 만들어진 탭메뉴를 리터럴 방식으로 클래스를 만들어 보자
+    */
+    // $(document).ready(function(){
+    //   // 탭메뉴 요소 초기화
+    //   init();
+    //
+    //   // 탭메뉴 요소에 이벤트 등록
+    //   initEvent();
+    // });
+    //
+    // // 요소 초기화
+    // function init(){
+    //   tabMenu = $("#tabMenu1");
+    //   menuItems = tabMenu.find("li");
+    // }
+    //
+    // // 이벤트 등록
+    // function initEvent(){
+    //   menuItems.on("click", function(){
+    //     setSelectItem($(this));
+    //   });
+    // }
+    //
+    // // menuItems에 해당하는 메뉴 아이템 선택하기
+    // function setSelectItem(menuItem){
+    //   // 기존 선택메뉴 아이템을 비활성화 처리하기
+    //   if(selectMenuItem){
+    //     selectMenuItem.removeClass("select");
+    //   }
+    //
+    //   // 신규 아이템 활성화 처리하기
+    //   selectMenuItem = menuItem;
+    //   selectMenuItem.addClass("select");
+    // }
+
+
+    $(document).ready(function(){
+      tabMenu1.init();
+      tabMenu1.initEvent();
+
+      tabMenu2.init();
+      tabMenu2.initEvent();
+    });
+
+    // 클래스 생성하기
+    var tabMenu1 = {
+      // 변수를 프로퍼티로 만들기
+      tabMenu : null,
+      menuItems : null,
+      selectMenuItem : null,
+
+      // 요소 초기화
+      init : function(){
+        this.tabMenu = $("#tabMenu1");
+        this.menuItems = this.tabMenu.find("li");
+      },
+
+      // 이벤트 등록
+      initEvent : function(){
+        var objThis = this;
+        this.menuItems.on("click", function(){
+          objThis.setSelectItem($(this));
+        });
+      },
+
+      // menuItem에 해당 메뉴 아이템 선택하기
+      setSelectItem : function(menuItem){
+        // 기존 선택메뉴 아이템을 비활성화 처리하기
+        if(this.selectMenuItem){
+          this.selectMenuItem.removeClass("select");
+        }
+
+        // 신규 아이템 활성화 처리하기
+        this.selectMenuItem = menuItem;
+        this.selectMenuItem.addClass("select");
+      },
+    }
+
+    // 클래스 생성하기
+    var tabMenu2 = {
+      // 변수를 프로퍼티로 만들기
+      tabMenu : null,
+      menuItems : null,
+      selectMenuItem : null,
+
+      // 요소 초기화
+      init : function(){
+        this.tabMenu = $("#tabMenu2");
+        this.menuItems = this.tabMenu.find("li");
+      },
+
+      // 이벤트 등록
+      initEvent : function(){
+        var objThis = this;
+        this.menuItems.on("click", function(){
+          objThis.setSelectItem($(this));
+        });
+      },
+
+      // menuItem에 해당 메뉴 아이템 선택하기
+      setSelectItem : function(menuItem){
+        // 기존 선택메뉴 아이템을 비활성화 처리하기
+        if(this.selectMenuItem){
+          this.selectMenuItem.removeClass("select");
+        }
+
+        // 신규 아이템 활성화 처리하기
+        this.selectMenuItem = menuItem;
+        this.selectMenuItem.addClass("select");
+      },
+    }
+
+    /*
+     오브젝트 리터럴 방식은 정의함과 동시에 인스턴스가 자동으로 만들어지기 때문에
+     인스턴스를 만드는 구문을 작성하지 않아도 되는 장점이 있다
+     반면 인스턴스를 여러 개 만들 수 없는 단점이 있다
+     */
+
+     // 오브젝트 리터럴 방식의 주 용도는 데이터 포장용
+     function showInfo(userName, id, nickName, age, address){
+       document.write("userName = " + userName, "id = " + id, "nickName = " + nickName, "age = " + age, "address = " + address);
+     }
+     //showInfo("강영주", "eodwn", "eodwn", 20, "서울시 강남구");
+
+     var userInfo = {
+       userName : "강영주",
+       id : "eodwn",
+       nickName : "eodwn",
+       age : 20,
+       address : "서울시 강남구"
+     }
+
+     //showInfo2(userInfo);
+
+     // 매개변수 위치와 관계없이 여러 개의 데이터를 하나의 변수에 담아 함수에 보낼 수 있다
+     function showInfo2(userInfo){
+       document.write("userName = " + userInfo.userName, "id = " + userInfo.id, "nickName = " + userInfo.nickName, "age = " + userInfo.age, "address = " + userInfo.address);
+     }
+
+     // 기본 사용자 정보값을 이용하면 입력 정보를 최소화할 수 있다.
+     var userInfo2 = {
+       userName : "강영주",
+       id : "eodwn"
+     }
+
+     var defaults = {
+       age : 0,
+       address : "서울시 강남구",
+       nickName : ""
+     }
+
+     showInfo3(userInfo2);
+
+     function showInfo3(userInfo2){
+       userInfo = $.extend({}, defaults, userInfo2);
+       document.write("userName = " + userInfo.userName, "id = " + userInfo.id, "nickName = " + userInfo.nickName, "age = " + userInfo.age, "address = " + userInfo.address);
+     }
+
+     // 실무에서 오브젝트 리터럴 사용 예
+     var ch = $("#ch1");
+     ch.css("position", "absolute");
+     ch.css("left", 100);
+     ch.css("top", 100);
+
+     var ch = $("#ch1");
+     ch.css({
+       "position" : "absolute",
+       "left" : 100,
+       "top" : 100
+     });
+
+
+  </script>
+
+</body>
+</html>
