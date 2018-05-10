@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>CHAPTER 01 클래스 기초_미션</title>
+    <style>
+  		body{font-size:13px}
+  		h1,h2,h3,h4,h5,div,p,dt,dd,table,td,th{padding:0;margin:0}
+  		h1{font-size:17px}
+  		h2{margin:15px 0 10px;font-size:15px}
+  		dt{margin-top:10px;font-weight:bold}
+  		table{width:100%;margin-top:10px;border-collapse: collapse;table-layout:fixed;font-size:13px}
+  		th,td{border:1px solid #ccc;padding:10px}
+
+      .image-container{
+          position: relative;
+          border:1px solid #000;
+          height:600px;
+      }
+
+      .image-container img{
+          position: absolute;
+          left:0;
+          top:0;
+          width:120px;
+      }
+
+      .tab-menu {
+  			list-style: none;
+  			height:80px;
+  		}
+  		.tab-menu li {
+  			width:99px;
+  			height:40px;
+  			background-position-y:0;
+  			text-indent: -1000px;
+  			overflow: hidden;
+  			display: inline-block;
+  			float:left;
+  		}
+  		.tab-menu li:hover {
+  			background-position-y: -40px;
+  		}
+  		.tab-menu li.select {
+  			background-position-y: -80px;
+  			height:80px;
+  		}
+  		.tab-menu li.menuitem1 {
+  			background-image: url(images/newbtn.bar.1.png);
+  		}
+  		.tab-menu li.menuitem2 {
+  			background-image: url(images/newbtn.bar.2.png);
+  		}
+  		.tab-menu li.menuitem3 {
+  			background-image: url(images/newbtn.bar.3.png);
+  		}
+  		.tab-menu li.menuitem4 {
+  			background-image: url(images/newbtn.bar.4.png);
+  		}
+  		.tab-menu li.menuitem5 {
+  			background-image: url(images/newbtn.bar.5.png);
+  		}
+  		.tab-menu li.menuitem6 {
+  			background-image: url(images/newbtn.bar.6.png);
+  		}
+
+  	</style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+  <p>container1</p>
+  <div class="image-container" id="container1">
+    <img src="images/1.png" >
+    <img src="images/2.png" >
+    <img src="images/3.png" >
+    <img src="images/4.png" >
+    <img src="images/5.png" >
+    <img src="images/6.png" >
+    <img src="images/7.png" >
+    <img src="images/8.png" >
+  </div>
+  <p>container2</p>
+
+  <div class="image-container" id="container2">
+    <img src="images/1.png" >
+    <img src="images/2.png" >
+    <img src="images/3.png" >
+    <img src="images/4.png" >
+    <img src="images/5.png" >
+    <img src="images/6.png" >
+    <img src="images/7.png" >
+    <img src="images/8.png" >
+  </div>
+
+  <button id="btnSelect">인덱스로 메뉴 아이템 선택하기</button>
+
+	<ul class="tab-menu" id="tabMenu1">
+		<li class="menuitem1">google</li>
+		<li class="menuitem2">facebook</li>
+		<li class="menuitem3">pinterest</li>
+		<li class="menuitem4">twitter</li>
+		<li class="menuitem5">airbnb</li>
+		<li class="menuitem6">path</li>
+	</ul>
+
+
+  <script>
+
+  /*
+      미션 03: 심플 갤러리를 클래스로 만들기
+      함수 단위 코딩으로 만들어진 심플 갤러리를 프로토타입 클래스로 만들어 주세요.
+  */
+
+   // $(document).ready(function(){
+   //     // 이미지  찾기
+   //     var images1 = $("#container1 img");
+   //     var images2 = $("#container2 img");
+   //
+   //
+   //     // 이미지 배열 하기
+   //     showGallery(images1, 6,150,150);
+   //     showGallery(images2, 4,200,200);
+   //
+   // });
+   //
+   // //이미지 배열하기
+   // function showGallery(images, count,width,height){
+   //     // 이미지 개수 구하기.
+   //     var length = images.length;
+   //
+   //     // 이미지 배열하기.
+   //     for(var i=0;i<length;i++){
+   //         // n번째 이미지 구하기
+   //         var $img = images.eq(i);
+   //
+   //         // 위치 값 구하기
+   //         var x = 100+((i%count)*width);
+   //         var y = 100+(parseInt(i/count)*height);
+   //
+   //         // 위치 설정
+   //         $img.css({
+   //             left:x,
+   //             top:y
+   //         });
+   //     }
+   // }
+
+   $(document).ready(function(){
+     // 인스턴스 생성
+     var gallery1 = new SimpleGallery({
+       selector : "#container1 img"
+     });
+     gallery1.showGallery();
+
+     var gallery2 = new SimpleGallery({
+       selector : "#container2 img",
+       count : 4,
+       imageWidth : 200,
+       imageHeight : 200
+     });
+     gallery2.showGallery();
+   });
+
+   // 클래스 생성
+   function SimpleGallery(info){
+     // 프로퍼티 생성
+     this.images = null;
+     this.count = info.count;
+     this.imageWidth = info.width;
+     this.imageHeight = info.height;
+
+     this.setDefaultValue();
+
+     this.init(info.selector);
+   }
+
+   // 기본값 설정
+   SimpleGallery.prototype.setDefaultValue = function(){
+     if(this.count==null){
+       this.count = 5;
+     }
+
+     if(this.imageWidth==null){
+       this.imageWidth = 150;
+     }
+
+     if(this.imageHeight==null){
+       this.imageHeight = 150;
+     }
+   }
+
+   // 요소 초기화
+   SimpleGallery.prototype.init = function(selector){
+     this.images = $(selector);
+   }
+
+   // 이미지 출력 메서드 추가
+   SimpleGallery.prototype.showGallery = function(){
+     // 이미지 개수 구하기.
+     var length = this.images.length;
+
+     // 이미지 배열하기.
+     for(var i = 0; i < length; i++){
+         // n번째 이미지 구하기
+         var $img = this.images.eq(i);
+
+         // 위치 값 구하기
+         var x = 100 + ((i % this.count) * this.imageWidth);
+         var y = 100 + (parseInt(i / this.count) * this.imageHeight);
+
+         // 위치 설정
+         $img.css({
+             left:x,
+             top:y
+         });
+     }
+   }
+
+
+   /*
+    미션 04: 탭메뉴 기능 추가하기
+    이번 미션은 앞에서 만든 탭메뉴에 인덱스 값으로 메뉴 아이템을 선택하는 기능을 추가하는 것입니다.
+    인덱스로 메뉴 아이템 선택하기 버튼(#btnSelect)을 누르면
+    선택하고 싶은 메뉴 아이템의 인덱스 값을 입력받은 후 해당 메뉴가 선택될 수 있게 만들어 주세요.
+
+    */
+
+
+    $(document).ready(function(){
+      // 인스턴스 생성
+      var tab1 = new TabMenu("#tabMenu1");
+
+      $("#btnSelect").click(function(){
+        var index = window.prompt("선택할 메뉴 아이템의 인덱스 값을 입력해 주세요.");
+        index = parseInt(index);
+        tab1.setSelectItemAt(index);
+      })
+    });
+
+    // 클래스 생성하기
+    function TabMenu(selector){
+      // 변수를 프로퍼티로 만들기
+      this.tabMenu = null;
+      this.menuItems = null;
+      this.selectMenuItem = null;
+
+      // 메서드 호출
+      this.init(selector);
+      this.initEvent();
+    }
+
+    // 요소 초기화
+    TabMenu.prototype.init = function(selector){
+      this.tabMenu = $(selector);
+      this.menuItems = this.tabMenu.find("li");
+    }
+
+    // 이벤트 등록
+    TabMenu.prototype.initEvent = function(){
+      var objThis = this;
+      this.menuItems.on("click", function(){
+        objThis.setSelectItem($(this));
+      });
+    },
+
+    // menuItem에 해당 메뉴 아이템 선택하기
+    TabMenu.prototype.setSelectItem = function(menuItem){
+      // 기존 선택메뉴 아이템을 비활성화 처리하기
+      if(this.selectMenuItem){
+        this.selectMenuItem.removeClass("select");
+      }
+
+      // 신규 아이템 활성화 처리하기
+      this.selectMenuItem = menuItem;
+      this.selectMenuItem.addClass("select");
+    }
+
+    // index에 해당하는 메뉴 아이템 선택하기
+    TabMenu.prototype.setSelectItemAt = function(index){
+      var menuItem = this.menuItems.eq(index);
+
+      // 기존 메소드 재사용
+      this.setSelectItem(menuItem);
+    }
+
+  </script>
+
+</body>
+</html>

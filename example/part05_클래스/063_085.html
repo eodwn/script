@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>CHAPTER 01 클래스 기초</title>
+    <style>
+  		body{font-size:13px}
+  		h1,h2,h3,h4,h5,div,p,dt,dd,table,td,th{padding:0;margin:0}
+  		h1{font-size:17px}
+  		h2{margin:15px 0 10px;font-size:15px}
+  		dt{margin-top:10px;font-weight:bold}
+  		table{width:100%;margin-top:10px;border-collapse: collapse;table-layout:fixed;font-size:13px}
+  		th,td{border:1px solid #ccc;padding:10px}
+
+      .tab-menu {
+  			list-style: none;
+  			height:80px;
+  		}
+  		.tab-menu li {
+  			width:99px;
+  			height:40px;
+  			background-position-y:0;
+  			text-indent: -1000px;
+  			overflow: hidden;
+  			display: inline-block;
+  			float:left;
+  		}
+  		.tab-menu li:hover {
+  			background-position-y: -40px;
+  		}
+  		.tab-menu li.select {
+  			background-position-y: -80px;
+  			height:80px;
+  		}
+  		.tab-menu li.menuitem1 {
+  			background-image: url(images/newbtn.bar.1.png);
+  		}
+  		.tab-menu li.menuitem2 {
+  			background-image: url(images/newbtn.bar.2.png);
+  		}
+  		.tab-menu li.menuitem3 {
+  			background-image: url(images/newbtn.bar.3.png);
+  		}
+  		.tab-menu li.menuitem4 {
+  			background-image: url(images/newbtn.bar.4.png);
+  		}
+  		.tab-menu li.menuitem5 {
+  			background-image: url(images/newbtn.bar.5.png);
+  		}
+  		.tab-menu li.menuitem6 {
+  			background-image: url(images/newbtn.bar.6.png);
+  		}
+
+  	</style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+  <p>첫 번째 탭메뉴</p>
+  <ul class="tab-menu" id="tabMenu1">
+    <li class="menuitem1">google</li>
+    <li class="menuitem2">facebook</li>
+    <li class="menuitem3">pinterest</li>
+    <li class="menuitem4">twitter</li>
+    <li class="menuitem5">airbnb</li>
+    <li class="menuitem6">path</li>
+  </ul>
+
+  <ul class="tab-menu" id="tabMenu2">
+    <li class="menuitem1">google</li>
+    <li class="menuitem2">facebook</li>
+    <li class="menuitem3">pinterest</li>
+    <li class="menuitem4">twitter</li>
+    <li class="menuitem5">airbnb</li>
+    <li class="menuitem6">path</li>
+  </ul>
+
+  <script>
+
+  // 프포토타입 방식을 활용한 간단한 클래스 만들기
+  // 클래스 생성자 정의
+  function User(){
+    // 프로퍼티 정의
+    this.name = "kangyoungju";
+    this.age = 10;
+  }
+
+  // 메소드 정의
+  User.prototype.showInfo = function(){
+    document.write("name = " + this.name + ", age = " + this.age);
+  }
+
+  // 인스턴스 생성
+  var user = new User();
+  // 메소드 호출
+  user.showInfo();
+
+  /*
+    함수 단위 코딩으로 만들어진 탭메뉴를 프로토타입 방식으로 클래스를 만들어 보자
+  */
+    // var tabMenu = null;
+    // var menuItems = null;
+    // var selectMenuItem = null;
+
+    // $(document).ready(function(){
+    //   // 탭메뉴 요소 초기화
+    //   init();
+    //
+    //   // 탭메뉴 요소에 이벤트 등록
+    //   initEvent();
+    // });
+    //
+    // // 요소 초기화
+    // function init(){
+    //   tabMenu = $("#tabMenu1");
+    //   menuItems = tabMenu.find("li");
+    // }
+    //
+    // // 이벤트 등록
+    // function initEvent(){
+    //   menuItems.on("click", function(){
+    //     setSelectItem($(this));
+    //   });
+    // }
+    //
+    // // menuItems에 해당하는 메뉴 아이템 선택하기
+    // function setSelectItem(menuItem){
+    //   // 기존 선택메뉴 아이템을 비활성화 처리하기
+    //   if(selectMenuItem){
+    //     selectMenuItem.removeClass("select");
+    //   }
+    //
+    //   // 신규 아이템 활성화 처리하기
+    //   selectMenuItem = menuItem;
+    //   selectMenuItem.addClass("select");
+    // }
+
+    $(document).ready(function(){
+      // 인스턴스 생성
+      var tab1 = new TabMenu("#tabMenu1");
+      var tab2 = new TabMenu("#tabMenu2");
+    });
+
+    // 클래스 생성하기
+    function TabMenu(selector){
+      // 변수를 프로퍼티로 만들기
+      this.tabMenu = null;
+      this.menuItems = null;
+      this.selectMenuItem = null;
+
+      // 메서드 호출
+      this.init(selector);
+      this.initEvent();
+    }
+
+    // 요소 초기화
+    TabMenu.prototype.init = function(selector){
+      this.tabMenu = $(selector);
+      this.menuItems = this.tabMenu.find("li");
+    }
+
+    // 이벤트 등록
+    TabMenu.prototype.initEvent = function(){
+      var objThis = this;
+      this.menuItems.on("click", function(){
+        objThis.setSelectItem($(this));
+      });
+    },
+
+    // menuItem에 해당 메뉴 아이템 선택하기
+    TabMenu.prototype.setSelectItem = function(menuItem){
+      // 기존 선택메뉴 아이템을 비활성화 처리하기
+      if(this.selectMenuItem){
+        this.selectMenuItem.removeClass("select");
+      }
+
+      // 신규 아이템 활성화 처리하기
+      this.selectMenuItem = menuItem;
+      this.selectMenuItem.addClass("select");
+    }
+
+    /*
+    하나의 탭메뉴 클래스로 여러 개의 탭메뉴를 만들 수 있는 장점이 있다
+    프로토타입 방식의 가장 큰 특징은 모든 인스턴스가 prototype에 만든 메서드를 공유해서 사용한다는 점이다.
+    prototype을 이용해 상속을 구현할 수 있다.
+    */
+
+    
+  </script>
+
+</body>
+</html>
