@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>CHAPTER 02 클래스 중급</title>
+    <style>
+  		body{font-size:13px}
+  		h1,h2,h3,h4,h5,div,p,dt,dd,table,td,th{padding:0;margin:0}
+  		h1{font-size:17px}
+  		h2{margin:15px 0 10px;font-size:15px}
+  		dt{margin-top:10px;font-weight:bold}
+  		table{width:100%;margin-top:10px;border-collapse: collapse;table-layout:fixed;font-size:13px}
+  		th,td{border:1px solid #ccc;padding:10px}
+  	</style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+  <button type="button" id="button">버튼</button>
+
+
+  <script>
+
+  /* this가 만들어지는 경우 */
+  // 01. 일반 함수에서의 this = window
+  var data = 10;
+  function outer(){
+    this.data = 20;
+    data = 30;
+
+    console.log("1. data = " + data);
+    console.log("2. this.data = " + this.data);
+    console.log("3. window.data = " + window.data);
+  }
+
+  outer();
+
+  // 02. 일반 중첩 함수에서의 this = window
+  var data2 = 10;
+  function outer1(){
+    function inner(){
+      this.data2 = 20;
+      data2 = 30;
+
+      console.log("1. data2 = " + data2);
+      console.log("2. this.data2 = " + this.data2);
+      console.log("3. window.data2 = " + window.data2);
+    }
+
+    inner();
+  }
+
+  outer1();
+
+  // 03. 이벤트 리스너에서의 this = 이벤트를 발생시킨 객체
+  var data3 = 10;
+  $(document).ready(function(){
+    $("#button").click(function(){
+      this.data3 = 20;
+      data3 = 30;
+
+      console.log("1. data3 = " + data3);
+      console.log("2. this.data3 = " + this.data3);
+      console.log("3. window.data3 = " + window.data3);
+    });
+  });
+
+  // 04. 메소드에서의 this = 메소드를 호출한 객체
+  var data4 = 10;
+  function MyClass(){
+    this.data4 = 0;
+  }
+
+  MyClass.prototype.method1 = function(){
+    this.data4 = 20;
+    data4 = 30;
+
+    console.log("1. data4 = " + data4);
+    console.log("2. this.data4 = " + this.data4);
+    console.log("3. window.data4 = " + window.data4);
+  }
+
+  var my1 = new MyClass();
+  my1.method1();
+
+  // 05. 메소드 내부의 중첩 함수에서의 this = window
+  var data5 = 10;
+  function MyClass(){
+    this.data5 = 0;
+  }
+
+  MyClass.prototype.method2 = function(){
+    function inner2(){
+      this.data5 = 20;
+      data5 = 30;
+
+      console.log("1. data5 = " + data5);
+      console.log("2. this.data5 = " + this.data5);
+      console.log("3. window.data5 = " + window.data5);
+    }
+
+    inner2();
+  }
+
+  var my2 = new MyClass();
+  my2.method2();
+
+  /* 함수호출() vs new 함수호출() */
+  // 01. 함수호출()
+  var userName = "test";
+
+  function User(name){
+    this.userName = name;
+  }
+
+  User("naver");
+  console.log("userName = " + userName);
+
+  // 02. new 함수호출()
+  var userName = "test";
+
+  function User(name){
+    this.userName = name;
+  }
+
+  var user = new User("naver");
+  console.log("userName = " + userName);
+  console.log(user);
+
+
+  </script>
+
+</body>
+</html>
