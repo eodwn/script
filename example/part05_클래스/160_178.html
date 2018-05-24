@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>CHAPTER 03 jquery 플러그인 제작</title>
+    <style>
+  		body{font-size:13px}
+  		h1,h2,h3,h4,h5,div,p,dt,dd,table,td,th{padding:0;margin:0}
+  		h1{font-size:17px}
+  		h2{margin:15px 0 10px;font-size:15px}
+  		dt{margin-top:10px;font-weight:bold}
+  		table{width:100%;margin-top:10px;border-collapse: collapse;table-layout:fixed;font-size:13px}
+  		th,td{border:1px solid #ccc;padding:10px}
+      .tab-menu {
+  			list-style: none;
+  			height:80px;
+  		}
+  		.tab-menu li {
+  			width:99px;
+  			height:40px;
+  			background-position-y:0;
+  			text-indent: -1000px;
+  			overflow: hidden;
+  			display: inline-block;
+  			float:left;
+  		}
+  		.tab-menu li:hover {
+  			background-position-y: -40px;
+  		}
+  		.tab-menu li.select {
+  			background-position-y: -80px;
+  			height:80px;
+  		}
+  		.tab-menu li.menuitem1 {
+  			background-image: url(images/newbtn.bar.1.png);
+  		}
+  		.tab-menu li.menuitem2 {
+  			background-image: url(images/newbtn.bar.2.png);
+  		}
+  		.tab-menu li.menuitem3 {
+  			background-image: url(images/newbtn.bar.3.png);
+  		}
+  		.tab-menu li.menuitem4 {
+  			background-image: url(images/newbtn.bar.4.png);
+  		}
+  		.tab-menu li.menuitem5 {
+  			background-image: url(images/newbtn.bar.5.png);
+  		}
+  		.tab-menu li.menuitem6 {
+  			background-image: url(images/newbtn.bar.6.png);
+  		}
+  	</style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+  <p>첫 번째 탭메뉴</p>
+  <ul class="tab-menu" id="tabMenu1">
+  	<li class="menuitem1">google</li>
+  	<li class="menuitem2">facebook</li>
+  	<li class="menuitem3">pinterest</li>
+  	<li class="menuitem4">twitter</li>
+  	<li class="menuitem5">airbnb</li>
+  	<li class="menuitem6">path</li>
+  </ul>
+  <p>두 번째 탭메뉴</p>
+  <ul class="tab-menu" id="tabMenu2">
+  	<li class="menuitem1">google</li>
+  	<li class="menuitem2">facebook</li>
+  	<li class="menuitem3">pinterest</li>
+  	<li class="menuitem4">twitter</li>
+  	<li class="menuitem5">airbnb</li>
+  	<li class="menuitem6">path</li>
+  </ul>
+
+
+  <script>
+
+    // 함수기반 플러그인 방식으로 탭메뉴 플러그인 만들기
+    (function($){
+      $.fn.tabMenu = function(){
+        this.each(function(index){
+          var tabMenu = null;
+          var menuItem = null;
+          var selectMenuItem = null;
+
+          function init(selector){
+            tabMenu = $(selector);
+            menuItem = tabMenu.find("li");
+          }
+
+          function initEvent(){
+            menuItem.on("click", function(){
+              setSelectItem($(this));
+            });
+          }
+
+          function setSelectItem(menuItem){
+            if(selectMenuItem){
+              selectMenuItem.removeClass("select");
+            }
+            selectMenuItem = menuItem;
+            selectMenuItem.addClass("select");
+          }
+
+          init(this);
+          initEvent();
+
+        })
+
+        return this;
+
+      }
+    })(jQuery);
+
+    $(document).ready(function(){
+      $(".tab-menu").tabMenu();
+    });
+
+
+    // 클래스기반 플러그인 방식으로 탭메뉴 플러그인 만들기
+    (function($){
+        function TabMenu(selector){
+          this.tabmenu = null;
+          this.menuItem = null;
+          this.selectMenuItem = null;
+
+          this.init(selector);
+          this.initEvent();
+        }
+
+        TabMenu.prototype.init = function(selector){
+          this.tabMenu = $(selector);
+          this.menuItem = this.tabMenu.find("li");
+        }
+
+        TabMenu.prototype.initEvent = function(){
+          var objThis = this;
+          this.menuItem.on("click", function(){
+            objThis.setSelectItem($(this));
+          });
+        }
+
+        TabMenu.prototype.setSelectItem = function(menuItem){
+          if(this.selectMenuItem){
+            this.selectMenuItem.removeClass("select");
+          }
+
+          this.selectMenuItem = menuItem;
+          this.selectMenuItem.addClass("select");
+        }
+
+        $.fn.tabMenu = function(){
+          this.each(function(){
+            var tabMenu = new TabMenu(this);
+          })
+
+          return this;
+        }
+    })(jQuery);
+
+    $(document).ready(function(){
+      $(".tab-menu").tabMenu();
+    })
+
+
+  </script>
+
+</body>
+</html>
