@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>CHAPTER 05 객체지향 프로그래밍 특징 03_클래스 상속 중급</title>
+	<style>
+	body{font-size:13px}
+	h1,h2,h3,h4,h5,div,p,dt,dd,table,td,th{padding:0;margin:0}
+	h1{font-size:17px}
+	h2{margin:15px 0 10px;font-size:15px}
+	dt{margin-top:10px;font-weight:bold}
+	table{width:100%;margin-top:10px;border-collapse: collapse;table-layout:fixed;font-size:13px}
+	th,td{border:1px solid #ccc;padding:10px}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+	<body>
+
+		<script>
+
+		/*
+			메서드 오버라이드
+		*/
+
+		// 1. 부모 클래스의 기능을 자식 클래스에서 재정의
+		// 부모 클래스
+		function MyParent(){
+			// 프로터피 생성
+			this.property1 = "data1";
+			console.log("MyParent()");
+		}
+
+		// 메서드 생성
+		MyParent.prototype.method1 = function(){
+			console.log("property1 = " + this.property1);
+		}
+
+		// 자식 클래스
+		function MyChild(){
+			console.log("MyChild()");
+		}
+
+		// 상속
+		MyChild.prototype = new MyParent();
+
+		MyChild.prototype.method1 = function(){
+			console.log("프로터피 1 = " + this.property1 + " 입니다.");
+		}
+
+		var child1 = new MyChild();
+		child1.method1();
+
+
+		// 2. 오버라이드를 활용한 기능 확장
+		// 부모 클래스
+		function MyParent(){
+			// 프로터피 생성
+			this.property1 = "data1";
+			console.log("MyParent()");
+		}
+
+		// 메서드 생성
+		MyParent.prototype.info = function(){
+			console.log("property1 = " + this.property1);
+		}
+
+		// 자식 클래스
+		function MyChild(){
+			console.log("MyChild()");
+			this.property2 = "data2";
+		}
+
+		// 상속
+		MyChild.prototype = new MyParent();
+
+		// 메서드 오버라이드를 활용한 기능 확장
+		MyChild.prototype.info = function(){
+			MyParent.prototype.info.call(this);
+			console.log("proterty2 = " + this.property2);
+		}
+
+		var child1 = new MyChild();
+		child1.info();
+
+
+		/*
+			constructor 프로퍼티 활용
+		*/
+
+		function MyParent(){
+			// 프로터피 생성
+			this.property1 = "value1";
+		}
+
+		// 메서드 생성
+		MyParent.prototype.method1 = function(){
+			console.log("property1 = " + this.property1);
+		}
+
+		// 자식 클래스
+		function MyChild(){
+			//console.log("MyChild()");
+		}
+
+		// 상속
+		MyChild.prototype = new MyParent();
+
+		// 생성자 설정
+		MyChild.prototype.constructor = MyChild;
+
+		var parent1 = new MyParent();
+		var child1 = new MyChild();
+
+		console.log(child1);
+
+		if(parent1.constructor == MyParent){
+			console.log("1. parent1는 MyParent의 인스턴스입니다.")
+		}
+
+		if(child1.constructor == MyChild){
+			console.log("2. child1는 MyChild의 인스턴스입니다.")
+		}
+
+
+		</script>
+
+
+	</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>CHAPTER 04 객체지향 프로그래밍 특징 03-클래스 상속 기초</title>
+	<style>
+	body{font-size:13px}
+	h1,h2,h3,h4,h5,div,p,dt,dd,table,td,th{padding:0;margin:0}
+	h1{font-size:17px}
+	h2{margin:15px 0 10px;font-size:15px}
+	dt{margin-top:10px;font-weight:bold}
+	table{width:100%;margin-top:10px;border-collapse: collapse;table-layout:fixed;font-size:13px}
+	th,td{border:1px solid #ccc;padding:10px}
+
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+	<body>
+		<script>
+
+			/*
+				클래스 상속 기능 : 코드 재사용
+			*/
+
+			 // 부모 클래스
+			 function MyParent(){
+				 this.property1 = "value1";
+			 }
+			 MyParent.prototype.method1 = function(){
+				 console.log("MyParent.method1()" + this.property1);
+			 }
+
+			 // 자식 클래스
+			 function MyChild(){
+
+			 }
+
+			 // 상속
+			 MyChild.prototype = new MyParent();
+
+			 // 자식 클래스 인스턴스 생성
+			 var child1 = new MyChild();
+			 console.log("child1.property1 = " + child1.property1);
+
+			 // 자식객체에서 부모의 메서드 호출
+			 child1.method1();
+
+			 /*
+	 			클래스 상속 기능 : 중복 코드 제거
+			 */
+
+			 // function MyClassA(){
+				//  this.property1 = 10;
+			 // }
+			 // MyClassA.prototype.method1 = function(){
+				//  console.log("this.property1 = " + this.property1);
+			 // }
+			 // MyClassA.prototype.method2 = function(){
+				//  console.log("이 기능은 MyClassA에 있는 기능입니다.");
+			 // }
+			 //
+			 // function MyClassB(){
+				//  this.property1 = 10;
+			 // }
+			 //
+			 // MyClassB.prototype.method1 = function(){
+				//  console.log("this.property1 = " + this.property1);
+			 // }
+			 // MyClassB.prototype.method2 = function(){
+				//  console.log("이 기능은 MyClassB에 있는 기능입니다.");
+			 // }
+			 //
+			 // var classA = new MyClassA();
+			 // console.log("classA.property1 = " + classA.property1);
+			 // classA.method1();
+			 // classA.method2();
+			 //
+			 // var classB = new MyClassB();
+			 // console.log("classB.property1 = " + classB.property1);
+			 // classB.method1();
+			 // classB.method2();
+
+			 // 중복 코드 담은 부모 클래스
+			 function MyParent(){
+				 this.property1 = 10;
+			 }
+			 MyParent.prototype.method1 = function(){
+				 console.log("this.property1 = " + this.property1);
+			 }
+
+			 function MyClassA(){
+
+			 }
+
+			 // 상속
+			 MyClassA.prototype = new MyParent();
+
+			 MyClassA.prototype.method2 = function(){
+				console.log("이 기능은 MyClassA에 있는 기능입니다.");
+			 }
+
+			 function MyClassB(){
+
+			 }
+
+			 // 상속
+			 MyClassB.prototype = new MyParent();
+
+			 MyClassB.prototype.method2 = function(){
+				 console.log("이 기능은 MyClassB에 있는 기능입니다.");
+			 }
+
+			 var classA = new MyClassA();
+			 console.log("classA.property1 = " + classA.property1);
+			 classA.method1();
+			 classA.method2();
+
+			 var classB = new MyClassB();
+			 console.log("classB.property1 = " + classB.property1);
+			 classB.method1();
+			 classB.method2();
+
+		</script>
+
+
+	</body>
+</html>
