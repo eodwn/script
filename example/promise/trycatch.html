@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>promise</title>
+    <style>
+		body{font-size:13px}
+		h1,h2,h3,h4,h5,div,p,dt,dd{padding:0;margin:0}
+		h1{font-size:17px}
+		h2{margin:15px 0 10px;font-size:15px}
+		dt{margin-top:10px;font-weight:bold}
+	</style>
+
+</head>
+<body>
+    <script>
+        try{
+            console.log("Outer try running...");
+
+            try{
+                console.log("Nested try running...");
+                throw new Error(301, "an error");
+            }
+
+            catch(e){
+                console.log("Nested catch caught " + e.message);
+                throw e;
+            }
+
+            finally{
+                console.log("Nested finally is running...");
+            }
+        }
+
+        catch(e){
+            console.log("Outer catch caught " + e.message);
+        }
+
+        finally{
+            console.log("Outer finally running");
+        }
+
+        
+    </script>
+</body>
+</html>

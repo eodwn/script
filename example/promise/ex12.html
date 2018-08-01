@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>2장 promise 사용하기</title>
+    <style>
+		body{font-size:13px}
+		h1,h2,h3,h4,h5,div,p,dt,dd{padding:0;margin:0}
+		h1{font-size:17px}
+		h2{margin:15px 0 10px;font-size:15px}
+		dt{margin-top:10px;font-weight:bold}
+	</style>
+
+</head>
+<body>
+    <script>
+        /*
+            Promise.all()
+        */
+
+        function timerPromisefy(delay){
+            return new Promise(function(resolve){
+                setTimeout(function(){
+                    resolve(delay);
+                }, delay);
+            });
+        }
+
+        var startDate = Date.now();
+
+        Promise.all([timerPromisefy(1), timerPromisefy(32), timerPromisefy(64), timerPromisefy(128)])
+        .then(function(values){
+            console.log(Date.now() - startDate + 'ms');
+            console.log(values);
+        });
+
+    </script>
+</body>
+</html>

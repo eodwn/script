@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>3. promise 특징</title>
+    <style>
+		body{font-size:13px}
+		h1,h2,h3,h4,h5,div,p,dt,dd{padding:0;margin:0}
+		h1{font-size:17px}
+		h2{margin:15px 0 10px;font-size:15px}
+		dt{margin-top:10px;font-weight:bold}
+	</style>
+
+</head>
+<body>
+    <script>
+        function onReadyPromise(){
+            return new Promise(function(resolve, reject){
+                var readyState = document.readyState;
+
+                if(readyState == 'interactive' || readyState == 'complete'){
+                    resolve();
+
+                } else{
+                    window.addEventListener('DOMContentLoaded', resolve)
+                }
+            });
+          
+        }
+
+        onReadyPromise().then(function(){
+            console.log('DOM fully loaded and parsed');
+        });
+
+        console.log('==Starting==');
+
+    </script>
+</body>
+</html>

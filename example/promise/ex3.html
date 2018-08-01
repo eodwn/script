@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>1장 promise란</title>
+    <style>
+		body{font-size:13px}
+		h1,h2,h3,h4,h5,div,p,dt,dd{padding:0;margin:0}
+		h1{font-size:17px}
+		h2{margin:15px 0 10px;font-size:15px}
+		dt{margin-top:10px;font-weight:bold}
+	</style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+    <script>
+        
+        /*
+            promise 사용하기
+        */
+        
+        function getURL(URL){
+            return new Promise(function(resolve, reject){
+                var req = new XMLHttpRequest();
+
+                req.open('GET', URL, true);
+
+                req.onload = function(){
+                    if(req.status == 200){ 
+                        resolve(req.responseText);
+                    } else{
+                        reject(new Error(req.statusText));
+                    }
+                };
+                
+                // onload에 에러가 있는데 왜 또 선언하는거지??
+                req.onerror = function(){
+                    reject(new Error(req.statusText));
+                };
+
+                req.send();
+            });
+        }
+
+        getURL("http://httpbin.org/get").then(function onFulfilled(value){
+            console.log(value);
+        }).catch(function onRejected(error){
+            console.error(error);
+        });
+
+
+        
+
+    </script>
+</body>
+</html>

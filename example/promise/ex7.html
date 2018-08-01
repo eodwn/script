@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>2장 promise 사용하기</title>
+    <style>
+		body{font-size:13px}
+		h1,h2,h3,h4,h5,div,p,dt,dd{padding:0;margin:0}
+		h1{font-size:17px}
+		h2{margin:15px 0 10px;font-size:15px}
+		dt{margin-top:10px;font-weight:bold}
+	</style>
+
+</head>
+<body>
+    <script>
+        /*
+            task A의 처리 결과 값을 task B에 어떻게 전달 할 수 있는지 알아본다
+        */
+
+        function doubleUP(value){
+            return value * 2;
+        }
+
+        function increment(value){
+            return value + 1;
+        }
+
+        function output(value){
+            console.log(value);
+        }
+
+        var promise = Promise.resolve(1);
+        promise.then(increment)
+        .then(doubleUP)
+        .then(output);
+
+        
+    </script>
+</body>
+</html>

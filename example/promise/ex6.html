@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>2장 promise 사용하기</title>
+    <style>
+		body{font-size:13px}
+		h1,h2,h3,h4,h5,div,p,dt,dd{padding:0;margin:0}
+		h1{font-size:17px}
+		h2{margin:15px 0 10px;font-size:15px}
+		dt{margin-top:10px;font-weight:bold}
+	</style>
+
+</head>
+<body>
+    <script>
+        
+        /*
+            then(),catch() 체인 
+        */
+
+        // function taskA(){
+        //     console.log("Task A");
+        // }
+
+        // function taskB(){
+        //     console.log("Task B");
+        // }
+
+        // function onRejected(error){
+        //     console.log("Catch Error : A or B", error);
+        // }
+
+        // function finalTask(){
+        //     console.log("Final Task");
+        // }
+
+        // var promise = Promise.resolve();
+        // promise.then(taskA)
+        // .then(taskB)
+        // .catch(onRejected)
+        // .then(finalTask);
+
+
+        /* 
+            finaTask에서 예외처리
+        */
+
+        function taskA(){
+            console.log("Task A");
+        }
+
+        function taskB(){
+            console.log("Task B");
+        }
+
+        function onRejected(error){
+            console.log("Catch Error : A or B", error);
+        }
+
+        function finalTask(){
+            throw new Error('Final Task 처리 중 에러');
+        }
+
+        var promise = Promise.resolve();
+        promise.then(taskA)
+        .then(taskB)
+        .catch(onRejected)
+        .then(finalTask);
+
+
+        /*
+            taskA에서 예외처리
+        */
+
+        // function taskA(){
+        //     console.log("Task A");
+        //     throw new Error("throw Error @ Task A");
+        // }
+
+        // function taskB(){
+        //     console.log("Task B");
+        // }
+
+        // function onRejected(error){
+        //     console.log("Catch Error : A or B", error);
+        // }
+
+        // function finalTask(){
+        //     console.log("Final Task");
+        // }
+
+        // var promise = Promise.resolve();
+        // promise.then(taskA)
+        // .then(taskB)
+        // .catch(onRejected)
+        // .then(finalTask);
+
+    </script>
+</body>
+</html>

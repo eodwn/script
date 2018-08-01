@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>3. promise 특징</title>
+    <style>
+		body{font-size:13px}
+		h1,h2,h3,h4,h5,div,p,dt,dd{padding:0;margin:0}
+		h1{font-size:17px}
+		h2{margin:15px 0 10px;font-size:15px}
+		dt{margin-top:10px;font-weight:bold}
+	</style>
+
+</head>
+<body>
+    <script>
+        var promise = new Promise(function(resolve){
+            console.log("inner promise");
+            resolve(42);
+        });
+
+        promise.then(function(value){
+            console.log(value);
+        });
+
+        console.log("outer promise");
+
+    </script>
+</body>
+</html>
